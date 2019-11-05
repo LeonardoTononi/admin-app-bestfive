@@ -2,17 +2,11 @@ import React from 'react'
 
 import './form-input.styles.scss'
 
-const FormInput = ({ handleChange, isTextArea, label, ...otherProps }) => {
+const FormInput = ({ handleChange, label, ...otherProps }) => {
   return (
     <div className="row">
       <label>{label}</label>
-      {
-        isTextArea ?
-          <textarea id="note" cols="30" rows="1" onChange={handleChange}></textarea>
-          :
-          <input onChange={handleChange} {...otherProps}></input>
-
-      }
+      <input onChange={handleChange} {...otherProps}></input>
     </div>
 
   )
