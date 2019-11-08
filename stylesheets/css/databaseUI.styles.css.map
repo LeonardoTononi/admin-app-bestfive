@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,IAAI;CACd",
+    "sources": [
+        "../../src/pages/DatabaseUI/databaseUI.styles.scss"
+    ],
+    "names": [],
+    "file": "databaseUI.styles.css"
+}

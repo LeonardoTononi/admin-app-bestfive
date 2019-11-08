@@ -1,0 +1,88 @@
+.table-container {
+  padding: 20px;
+}
+
+.table-content {
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 400px;
+  text-align: left;
+
+  thead tr {
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #52545e;
+    background-color: #e6e6e654;
+
+    th {
+      padding: 20px 10px;
+      min-width: 100px;
+      width: 14.28%;
+    }
+  }
+
+  tbody {
+    td {
+      padding: 20px 10px;
+      width: 14.28%;
+    }
+  }
+
+  tr {
+    border-top: 1px solid #e6e6e6;
+    padding: 15px;
+
+    &:hover {
+      background-color: #f5f8fc;
+    }
+  }
+
+  .td-hours:hover {
+    .opening-hours {
+      transform: scale(1);
+    }
+  }
+
+  .opening-hours {
+    position: absolute;
+    transform: scale(0);
+    background-color: whitesmoke;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    transition: transform ease-out 150ms, bottom ease-out 150ms;
+    padding: 20px 10px;
+    width: 200px;
+
+    h5 {
+      margin: 0 auto;
+    }
+
+    p {
+      padding: 5px 0;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+
+a[data-tool-tip] {
+  position: relative;
+}
+
+a[data-tool-tip]::after {
+  content: attr(data-tool-tip);
+  position: absolute;
+  background-color: whitesmoke;
+  padding: 1em 3em;
+  color: #4f555b;
+  border-radius: 5px;
+  font-size: 0.8em;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  transform: scale(0);
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+}
+
+a[data-tool-tip]:hover::after {
+  transform: scale(1);
+}

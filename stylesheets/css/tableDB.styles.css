@@ -1,0 +1,96 @@
+.table-container {
+  padding: 20px;
+}
+
+.table-content {
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 400px;
+  text-align: left;
+}
+
+.table-content thead tr {
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #52545e;
+  background-color: #e6e6e654;
+}
+
+.table-content thead tr th {
+  padding: 20px 10px;
+  min-width: 100px;
+  width: 14.28%;
+}
+
+.table-content tbody td {
+  padding: 20px 10px;
+  width: 14.28%;
+}
+
+.table-content tr {
+  border-top: 1px solid #e6e6e6;
+  padding: 15px;
+}
+
+.table-content tr:hover {
+  background-color: #f5f8fc;
+}
+
+.table-content .td-hours:hover .opening-hours {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.table-content .opening-hours {
+  position: absolute;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  padding: 20px 10px;
+  width: 200px;
+}
+
+.table-content .opening-hours h5 {
+  margin: 0 auto;
+}
+
+.table-content .opening-hours p {
+  padding: 5px 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+a[data-tool-tip] {
+  position: relative;
+}
+
+a[data-tool-tip]::after {
+  content: attr(data-tool-tip);
+  position: absolute;
+  background-color: whitesmoke;
+  padding: 1em 3em;
+  color: #4f555b;
+  border-radius: 5px;
+  font-size: 0.8em;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+}
+
+a[data-tool-tip]:hover::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+/*# sourceMappingURL=tableDB.styles.css.map */

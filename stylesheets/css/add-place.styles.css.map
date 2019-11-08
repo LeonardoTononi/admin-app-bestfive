@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,OAAO,EAAE,IAAI;CACd;;AAED,AAAA,SAAS,CAAC;EACR,OAAO,EAAE,GAAG;EACZ,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "../../src/pages/Add-place/add-place.styles.scss"
+    ],
+    "names": [],
+    "file": "add-place.styles.css"
+}

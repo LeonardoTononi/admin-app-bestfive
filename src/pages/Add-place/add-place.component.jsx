@@ -1,7 +1,9 @@
 import React from 'react'
 import useForm from 'react-hook-form'
-import './add-place.styles.scss'
+import { Link } from 'react-router-dom';
 import firebase from '../../firebase'
+
+import './add-place.styles.scss'
 
 const AddPlace = () => {
 
@@ -16,31 +18,31 @@ const AddPlace = () => {
       bestfive,
       position: { lat, lng },
       openingHours: {
-        monday: {
+        mon: {
           open: mondayOpen,
           close: mondayClose
         },
-        tuesday: {
+        tue: {
           open: tuesdayOpen,
           close: tuesdayClose
         },
-        wednesday: {
+        wed: {
           open: wednesdayOpen,
           close: wednesdayClose
         },
-        thursday: {
+        thu: {
           open: thursdayOpen,
           close: thursdayClose
         },
-        friday: {
+        fri: {
           open: fridayOpen,
           close: fridayClose
         },
-        saturday: {
+        sat: {
           open: saturdayOpen,
           close: saturdayClose
         },
-        sunday: {
+        sun: {
           open: sundayOpen,
           close: sundayClose
         }
@@ -243,6 +245,7 @@ const AddPlace = () => {
             max="23:59" ></input>
         </div>
         <input type="submit" />
+        <Link to="/database"><button>Go to DB</button></Link>
       </form>
     </div>
   )
