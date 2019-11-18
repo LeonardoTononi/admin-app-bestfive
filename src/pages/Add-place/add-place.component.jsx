@@ -68,10 +68,10 @@ const AddPlace = () => {
 
   return (
     <div className="container">
-      <h1>Add places form</h1>
+      <h1><span role="img" aria-label="paper and pen">📝</span> Add places form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
-          <label>Name</label>
+          <h5 className="space-bottom">Name</h5>
           <input
             ref={register}
             name="name"
@@ -80,7 +80,7 @@ const AddPlace = () => {
           />
         </div>
         <div className="row">
-          <label>GoogleID</label>
+          <h5 className="space-bottom">GoogleID</h5>
           <input
             ref={register}
             name="googleID"
@@ -89,7 +89,7 @@ const AddPlace = () => {
           />
         </div>
         <div className="row">
-          <label>Category</label>
+          <h5 className="space-bottom">Category</h5>
           <select ref={register} name="category">
             {
               category.map(item => (
@@ -99,7 +99,7 @@ const AddPlace = () => {
           </select>
         </div>
         <div className="row">
-          <label>Price</label>
+          <h5 className="space-bottom">Price</h5>
           <select name="price" ref={register}>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -107,7 +107,7 @@ const AddPlace = () => {
           </select>
         </div>
         <div className="row">
-          <label>Bestfive</label>
+          <h5 className="space-bottom">Bestfive</h5>
           <select name="bestfive" ref={register}>
             <option value="no">No</option>
             <option value="yes">Yes</option>
@@ -163,8 +163,8 @@ const AddPlace = () => {
             <input ref={register} type="radio" name="colutre" value="colture" id="colture" /> Colture <br />
           </div>
         </div> */}
-        <h5>Opening Hours</h5>
         <div className="row">
+          <h5>Opening Hours</h5>
           <label>Monday</label>
           <input name="mondayOpen"
             ref={register}
@@ -269,8 +269,11 @@ const AddPlace = () => {
             min="00:00"
             max="23:59" ></input>
         </div>
-        <input type="submit" />
-        <Link to="/database"><button>Go to DB</button></Link>
+        <div className="row">
+          <button className="submit" type="submit">Submit</button>
+          <Link className="goToDb" to="/database"><button>Go to DB</button></Link>
+        </div>
+
       </form>
     </div>
   )
