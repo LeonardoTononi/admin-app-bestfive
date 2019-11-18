@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useForm from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import firebase from '../../firebase'
@@ -7,15 +7,31 @@ import './add-place.styles.scss'
 
 const AddPlace = () => {
 
+  const [category, setCategory] = useState([])
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('category')
+      .onSnapshot(snapshot => {
+        const cat = snapshot.docs.map(doc => ({
+          docID: doc.id,
+          ...doc.data()
+        }))
+        setCategory(cat)
+      })
+  }, [])
+
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
-    const { name, googleID, category, price, bestfive, lat, lng, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose, wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen, fridayClose, saturdayOpen, saturdayClose, sundayOpen, sundayClose } = data;
+    const { name, googleID, category, price, bestfive, lat, lng, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose, wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen, fridayClose, saturdayOpen, saturdayClose, sundayOpen, sundayClose, img1, img2, img3, img4, img5 } = data;
     firebase.firestore().collection('places').add({
       name,
       googleID,
       category,
       price,
       bestfive,
+      imageLink: { img1, img2, img3, img4, img5 },
       position: { lat, lng },
       openingHours: {
         mon: {
@@ -58,7 +74,6 @@ const AddPlace = () => {
           <label>Name</label>
           <input
             ref={register}
-            label="Name"
             name="name"
             type="text"
             id="name"
@@ -68,7 +83,6 @@ const AddPlace = () => {
           <label>GoogleID</label>
           <input
             ref={register}
-            label="GoogleID"
             name="googleID"
             type="text"
             id="googleID"
@@ -76,13 +90,13 @@ const AddPlace = () => {
         </div>
         <div className="row">
           <label>Category</label>
-          <input
-            ref={register}
-            label="Category"
-            name="category"
-            type="text"
-            id="category"
-          />
+          <select ref={register} name="category">
+            {
+              category.map(item => (
+                <option value={item.name} key={item.docID}>{item.name}</option>
+              ))
+            }
+          </select>
         </div>
         <div className="row">
           <label>Price</label>
@@ -100,11 +114,23 @@ const AddPlace = () => {
           </select>
         </div>
         <div className="row">
+          <h5>Image Links</h5>
+          <label>Link 1</label>
+          <input type="text" ref={register} name="img1" id="img1" />
+          <label>Link 2</label>
+          <input type="text" ref={register} name="img2" id="img2" />
+          <label>Link 3</label>
+          <input type="text" ref={register} name="img3" id="img3" />
+          <label>Link 4</label>
+          <input type="text" ref={register} name="img4" id="img4" />
+          <label>Link 5</label>
+          <input type="text" ref={register} name="img5" id="img5" />
+        </div>
+        <div className="row">
           <h5>Position</h5>
           <label>Latitude</label>
           <input
             ref={register}
-            label="Latitude"
             name="lat"
             type="number"
             id="lat"
@@ -113,7 +139,6 @@ const AddPlace = () => {
           <label>Longitude</label>
           <input
             ref={register}
-            label="Longitude"
             name="lng"
             type="number"
             id="lng"

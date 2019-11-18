@@ -40,7 +40,6 @@ const TableDB = () => {
           {
             tdContent.map(item => {
               const h = item.openingHours;
-              console.log(h)
               return (
                 <tr key={item.docID} >
                   <td>{item.name}</td>
