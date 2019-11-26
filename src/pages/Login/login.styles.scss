@@ -1,0 +1,62 @@
+.login-container {
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 20px;
+  background: whitesmoke;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -278.9px;
+  margin-left: -220px;
+  box-shadow: 3px 1px 18px 3px #eaeaea;
+
+  h1 {
+    padding: 0;
+    color: #585858;
+  }
+
+  img {
+    position: relative;
+    top: 8px;
+    width: 50px;
+  }
+
+  form {
+    .row {
+      padding: 15px 0;
+      display: grid;
+      width: 400px;
+
+      input {
+        margin: 0 15px;
+        background: white;
+        padding: 12px;
+        border: none;
+        box-shadow: inset 1px 1px 7px 0px #dcdcdc63;
+        outline: none;
+        font-size: 1rem;
+        color: #484848;
+      }
+
+      button {
+        max-height: 42px;
+        width: 370px;
+        margin-top: 10px;
+        background: #484848;
+        color: white;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        outline: none;
+        transition: transform 100ms ease-in;
+
+        &:hover {
+          transform: scale(1.05);
+          background: #833ab4;
+        }
+      }
+    }
+  }
+}

@@ -271,7 +271,7 @@ const AddPlace = () => {
         </div>
         <div className="row">
           <button className="submit" type="submit">Submit</button>
-          <Link className="goToDb" to="/database"><button>Go to DB</button></Link>
+          <Link className="goToDb" to="/dashboard"><button>Go to DB</button></Link>
         </div>
 
       </form>

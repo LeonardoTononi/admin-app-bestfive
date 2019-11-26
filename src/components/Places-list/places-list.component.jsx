@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import firebase from '../../firebase'
 
-import './tableDB.styles.scss'
+import './places-list.styles.scss'
 
-const TableDB = () => {
+const PlacesList = () => {
 
   const [tdContent, setTdContent] = useState([])
 
@@ -77,5 +77,5 @@ const TableDB = () => {
   )
 }
 
-export default TableDB
+export default PlacesList
 
