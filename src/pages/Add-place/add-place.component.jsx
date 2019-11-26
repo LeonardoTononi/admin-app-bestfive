@@ -3,6 +3,8 @@ import useForm from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import firebase from '../../firebase'
 
+import Navbar from '../../components/Navbar/navbar.component';
+
 import './add-place.styles.scss'
 
 const AddPlace = () => {
@@ -68,6 +70,7 @@ const AddPlace = () => {
 
   return (
     <div className="container">
+      <Navbar />
       <h1><span role="img" aria-label="paper and pen">📝</span> Add places form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">

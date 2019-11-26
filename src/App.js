@@ -5,6 +5,7 @@ import './App.scss';
 import AddPlace from './pages/Add-place/add-place.component';
 import Dashboard from './pages/Dashboard/dashboard.component';
 import Login from './pages/Login/login.component';
+
 class App extends Component {
   render() {
     return (
