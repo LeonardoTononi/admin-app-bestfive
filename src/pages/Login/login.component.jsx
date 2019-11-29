@@ -1,57 +1,59 @@
-import React, { Component } from 'react';
+import React, { useCallback, useContext } from 'react';
+import { withRouter, Redirect } from 'react-router'
+import firebase from '../../firebase'
+import { AuthContext } from '../../Auth'
+
 import './login.styles.scss'
 import FiveHand from '../../assets/violetHand.png'
 
-class Login extends Component {
-  constructor() {
-    super();
+const Login = ({ history }) => {
 
-    this.state = {
-      email: '',
-      password: ''
-    }
+  const handleLogin = useCallback(
+    async event => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await firebase
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/dashboard")
+      } catch (error) {
+        alert(error)
+      }
+    },
+    [history]
+  )
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/dashboard" />
   }
 
-  handleChange = event => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = e => {
-    console.log(e, 'SUBMIT')
-  }
-
-  render() {
-    const { email, password } = this.state;
-
-    return (
-      <div className="login-container">
-        <h1><img src={FiveHand} alt="hand five" className="b5-hand" /> Bestfive Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <label>Email</label>
-            <input
-              name="email"
-              type="email"
-              value={email}
-              onChange={this.handleChange} />
-          </div>
-          <div className="row">
-            <label>Password</label>
-            <input
-              name="password"
-              type="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="row">
-            <button type="submit">Login</button>
-          </div>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div className="login-container">
+      <h1><img src={FiveHand} alt="hand five" className="b5-hand" /> Bestfive Login</h1>
+      <form onSubmit={handleLogin}>
+        <div className="row">
+          <label>Email</label>
+          <input
+            name="email"
+            type="email"
+          />
+        </div>
+        <div className="row">
+          <label>Password</label>
+          <input
+            name="password"
+            type="password"
+          />
+        </div>
+        <div className="row">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  )
 }
 
-export default Login
+export default withRouter(Login)
