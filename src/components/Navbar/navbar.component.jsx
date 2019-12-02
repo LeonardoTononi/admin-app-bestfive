@@ -1,32 +1,38 @@
 import React from 'react'
-import firebase from '../../firebase'
 import { Link } from 'react-router-dom';
+import AddPlaceIcon from '../../assets/navbar/add-place.png'
+import DashboardIcon from '../../assets/navbar/dashboard.png'
+import FaqIcon from '../../assets/navbar/faq.png'
+
+import './navbar.styles.scss'
 
 const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      <div className="hamburger">
-        <div className="icon">Bestfive Admin</div>
-      </div>
       <div className="dashboard-nav">
-        <div className="icon"></div>
-        <Link to="/dashboard"><h2>Dashboard</h2></Link>
+        <Link to="/dashboard">
+          <div className="icon">
+            <img src={DashboardIcon} alt="dashboard icon" />
+          </div>
+          <p>Dashboard</p>
+        </Link>
       </div>
       <div className="add-place-nav">
-        <div className="icon"></div>
-        <Link to="/add-place"><h2>Add Place</h2></Link>
+        <Link to="/add-place">
+          <div className="icon">
+            <img src={AddPlaceIcon} alt="add place icon" />
+          </div>
+          <p>Add Place</p>
+        </Link>
       </div>
       <div className="faq-nav">
-        <div className="icon"></div>
-        <h2>FAQ</h2>
-      </div>
-      <div className="logout">
-        <div className="icon"></div>
-        <button onClick={() => firebase.auth().signOut()} >Logout</button>
-      </div>
-      <div className="expand-btn">
-        <div className="icon"></div>
+        <Link to="/">
+          <div className="icon">
+            <img src={FaqIcon} alt="q & a icon" />
+          </div>
+          <p>FAQ</p>
+        </Link>
       </div>
     </div>
   )

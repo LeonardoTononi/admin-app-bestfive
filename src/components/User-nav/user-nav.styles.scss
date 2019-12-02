@@ -1,0 +1,44 @@
+.user-nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+
+  .logo {
+    padding: 20px;
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 4rem;
+
+    img {
+      width: 50px;
+      position: absolute;
+      left: 9px;
+      top: 8px;
+    }
+
+    a {
+      color: #833ab4;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .user {
+    padding: 20px;
+  }
+
+  button {
+    color: #48484891;
+    font-weight: 400;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}

@@ -1,0 +1,73 @@
+.navbar-container {
+  display: grid;
+  justify-content: space-between;
+  background: white;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  place-items: center;
+  padding: 10px 0;
+  margin: 10px 40px;
+  border-radius: 50px;
+  max-width: 1200px;
+  box-shadow: 6px 5px 15px 0px #d8d8d8;
+  margin: 0 auto;
+
+  .dashboard-nav {
+    position: relative;
+
+    img {
+      background: #9075e42e;
+    }
+
+    a {
+      color: #9075e4;
+    }
+  }
+
+  .add-place-nav {
+    position: relative;
+
+    img {
+      background: #de87162e;
+    }
+
+    a {
+      color: #de8716;
+    }
+  }
+
+  .faq-nav {
+    position: relative;
+
+    img {
+      background: #d844c92e;
+    }
+
+    a {
+      color: #d844c9;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    left: -3.4rem;
+    top: 6px;
+
+    img {
+      width: 30px;
+      border-radius: 50%;
+      padding: 1;
+      padding: 10px;
+    }
+  }
+
+  a,
+  button {
+    text-decoration: none;
+    color: #484848;
+    font-weight: 400;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
+}

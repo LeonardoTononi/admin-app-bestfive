@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../src/components/Place-details/place-details.styles.scss"
+    ],
+    "names": [],
+    "file": "place-details.styles.css"
+}

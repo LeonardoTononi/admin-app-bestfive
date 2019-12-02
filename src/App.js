@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './Auth';
 import './App.scss';
+
+import UserNav from './components/User-nav/user-nav.component';
 import AddPlace from './pages/Add-place/add-place.component';
 import Dashboard from './pages/Dashboard/dashboard.component';
 import Login from './pages/Login/login.component';
@@ -12,6 +14,7 @@ class App extends Component {
     return (
       <AuthProvider>
         <BrowserRouter>
+          <PrivateRoute component={UserNav} />
           <Switch>
             <Route exact path='/' component={Login} />
             <PrivateRoute path='/dashboard' component={Dashboard} />

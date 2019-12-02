@@ -1,0 +1,148 @@
+.table-container {
+  padding: 20px;
+}
+
+.table-container .table-content {
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 400px;
+  text-align: left;
+}
+
+.table-container .table-content thead tr {
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #52545e;
+  background-color: #e6e6e654;
+}
+
+.table-container .table-content thead tr th {
+  padding: 20px 10px;
+  min-width: 100px;
+  width: 14.28%;
+}
+
+.table-container .table-content tbody td {
+  padding: 20px 10px;
+  width: 14.28%;
+}
+
+.table-container .table-content tr {
+  border-top: 1px solid #e6e6e6;
+  padding: 15px;
+}
+
+.table-container .table-content tr:hover {
+  background-color: #f5f8fc;
+}
+
+.table-container .table-content .td-hours:hover .opening-hours {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.table-container .table-content .opening-hours {
+  position: absolute;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  padding: 20px 10px;
+  width: 200px;
+}
+
+.table-container .table-content .opening-hours h5 {
+  margin: 0 auto;
+}
+
+.table-container .table-content .opening-hours p {
+  padding: 5px 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.table-container a[data-tool-tip] {
+  position: relative;
+}
+
+.table-container a[data-tool-tip]::after {
+  content: attr(data-tool-tip);
+  position: absolute;
+  background-color: whitesmoke;
+  padding: 1em 3em;
+  color: #4f555b;
+  border-radius: 5px;
+  font-size: 0.8em;
+  right: 0;
+  bottom: 0;
+  white-space: nowrap;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+}
+
+.table-container a[data-tool-tip]:hover::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.place-details-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(400px, 500px))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(400px, 500px));
+  grid-gap: 50px;
+  place-content: center;
+  padding: 40px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.place-details-container p {
+  margin: 0;
+}
+
+.place-details-container .place-card {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  background: white;
+  border-radius: 40px;
+  -webkit-box-shadow: 6px 5px 15px 0px #d8d8d8;
+          box-shadow: 6px 5px 15px 0px #d8d8d8;
+  min-width: 500px;
+  min-height: 200px;
+}
+
+.place-details-container .place-card .edit {
+  position: absolute;
+  right: 25px;
+  top: 3px;
+}
+
+.place-details-container .main-info {
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+.place-details-container .secondary-info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.place-details-container .hours {
+  position: absolute;
+  display: none;
+}
+/*# sourceMappingURL=dashboard.styles.css.map */
