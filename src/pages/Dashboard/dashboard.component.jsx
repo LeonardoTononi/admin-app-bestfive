@@ -98,6 +98,9 @@ const Dashboard = () => {
     <div>
       <Navbar />
 
+      <div className="component-title">
+        <h1>Place Details</h1>
+      </div>
       <div className="place-details-container">
         <div className="place-card main-info">
           <div className="category">
@@ -122,6 +125,12 @@ const Dashboard = () => {
                   <img src={NotIcon} alt="no icon" />
               }
             </p>
+          </div>
+          <div className="website">
+            <p>tapasbar.com</p>
+          </div>
+          <div className="phone">
+            <p>+34 688 544 45</p>
           </div>
           <div className="edit">
             <p>edit</p>
@@ -240,8 +249,11 @@ const Dashboard = () => {
         </div>
       </div>
 
+      <div className="component-title">
+        <h1>Place List</h1>
+      </div>
+
       <div className="table-container">
-        <h2>Places List</h2>
         <div className="search">
           <label>Search</label>
           <input type="text" />
@@ -263,7 +275,14 @@ const Dashboard = () => {
                   }}>
                     <td>{item.name}</td>
                     <td>{item.category}</td>
-                    <td>{item.bestfive}</td>
+                    <td className="bestfive-list">
+                      {
+                        item.bestfive === 'yes' ?
+                          <img src={YesIcon} alt="yes icon" />
+                          :
+                          <img src={NotIcon} alt="no icon" />
+                      }
+                    </td>
                   </tr>
                 )
               })
