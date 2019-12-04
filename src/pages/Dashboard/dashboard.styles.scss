@@ -2,7 +2,7 @@
 
 .component-title {
   padding: 4em 8em;
-  max-width: 1800px;
+  max-width: 1200px;
   margin: 0 auto;
 
   h1 {
@@ -320,8 +320,9 @@
 // TABLE 
 .table-container {
   padding: 2em;
-  max-width: 1800px;
-  margin: 0 8em 10em 8em;
+  max-width: 1300px;
+  margin: 0 auto 10em auto;
+  display: grid;
   display: grid;
   position: relative;
   background: white;
