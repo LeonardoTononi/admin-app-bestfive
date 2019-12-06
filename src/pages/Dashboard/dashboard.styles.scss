@@ -44,7 +44,7 @@
 
       p {
         font-size: 1rem;
-        padding: .2rem .8rem;
+        padding: 0.2rem 0.8rem;
         border: 1px solid #833ab4;
         border-radius: 13px;
         cursor: pointer;
@@ -59,7 +59,6 @@
     background-color: #e8e8e8;
     margin-bottom: 40px;
   }
-
 
   .main-info {
     grid-template-areas:
@@ -106,7 +105,7 @@
       }
 
       p:before {
-        content: 'Category';
+        content: "Category";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -118,13 +117,12 @@
       grid-area: name;
       padding: 1rem 0 2.5rem 1.1rem;
 
-
       p {
         font-size: 1.6rem;
       }
 
       p:before {
-        content: 'Name';
+        content: "Name";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -137,7 +135,7 @@
       place-self: center;
 
       p:before {
-        content: 'Bestfive';
+        content: "Bestfive";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -154,7 +152,7 @@
       place-self: center;
 
       p:before {
-        content: 'Website';
+        content: "Website";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -167,7 +165,7 @@
       place-self: center;
 
       p:before {
-        content: 'Phone';
+        content: "Phone";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -180,7 +178,7 @@
       place-self: center;
 
       p:before {
-        content: 'GoogleID';
+        content: "GoogleID";
         font-size: 1rem;
         position: absolute;
         bottom: 2rem;
@@ -211,7 +209,7 @@
       }
 
       p:before {
-        content: 'Price';
+        content: "Price";
         font-size: 1rem;
         position: absolute;
         bottom: 4rem;
@@ -225,11 +223,11 @@
       padding: 2em 0 1em 1em;
 
       p {
-        font-size: .9rem;
+        font-size: 0.9rem;
       }
 
       p:before {
-        content: 'Position';
+        content: "Position";
         font-size: 1rem;
         position: absolute;
         bottom: 4.5rem;
@@ -243,7 +241,7 @@
       padding-left: 1rem;
 
       &:before {
-        content: 'Opening Hours';
+        content: "Opening Hours";
         font-size: 1rem;
         position: absolute;
         top: -2rem;
@@ -260,19 +258,14 @@
 
         .row-hours {
           display: inline-flex;
-          padding: .3rem;
+          padding: 0.3rem;
         }
       }
     }
-
-
   }
 
-
-
   .images {
-    grid-template-areas:
-      "image edit";
+    grid-template-areas: "image edit";
     grid-template-columns: 1fr;
 
     .image {
@@ -282,13 +275,11 @@
       p {
         font-size: 1.4rem;
       }
-
     }
   }
 
   .description {
-    grid-template-areas:
-      "text edit";
+    grid-template-areas: "text edit";
     grid-template-columns: 1fr;
 
     .defualt-description {
@@ -304,12 +295,12 @@
         position: relative;
 
         &::before {
-          content: '\201C';
+          content: "\201C";
           position: absolute;
           font-size: 10em;
           color: #833ab4;
-          top: -.4em;
-          left: -.2em;
+          top: -0.4em;
+          left: -0.2em;
           opacity: 0.2;
         }
       }
@@ -317,7 +308,7 @@
   }
 }
 
-// TABLE 
+// TABLE
 .table-container {
   padding: 2em;
   max-width: 1300px;
@@ -334,15 +325,15 @@
     place-self: end;
 
     label {
-      padding-right: .4em;
+      padding-right: 0.4em;
     }
 
     input,
     textarea {
-      padding: .3em .5em;
+      padding: 0.3em 0.5em;
       outline: none;
       color: #484848;
-      font-size: .8rem;
+      font-size: 0.8rem;
       border: 1px solid #e7e7e7;
       border-radius: 10px;
       transition: background-color 50ms ease-in-out;
@@ -365,6 +356,7 @@
       letter-spacing: 0.8px;
       color: #52545e;
       background-color: #e6e6e654;
+      font-size: 1em;
 
       th {
         padding: 20px 10px;
@@ -377,6 +369,15 @@
       td {
         padding: 20px 10px;
         width: 14.28%;
+
+        h5 {
+          padding: 0;
+          font-weight: 600;
+        }
+
+        span {
+          font-size: 1em;
+        }
       }
 
       .bestfive-list {

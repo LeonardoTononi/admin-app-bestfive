@@ -70,8 +70,13 @@ const AddPlace = () => {
   }
 
   return (
+
     <div className="container">
       <Navbar />
+
+
+
+
       <h1><span role="img" aria-label="paper and pen">📝</span> Add places form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
