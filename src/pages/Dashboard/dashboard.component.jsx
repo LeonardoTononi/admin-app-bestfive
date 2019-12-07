@@ -31,7 +31,7 @@ import NoImage from '../../assets/no-image.png'
 import MoneyIcon from '../../assets/icon-money.png' */
 
 
-const Dashboard = () => {
+const Dashboard = ({ match }) => {
 
   const [tdContent, setTdContent] = useState([])
   const [placeSelected, setPlaceSelected] = useState([])
@@ -57,7 +57,10 @@ const Dashboard = () => {
     <div>
       <Navbar />
 
-      <PlaceDetails placeSelected={placeSelected} />
+      <div className="component-title">
+        <h1>Place Details</h1>
+      </div>
+      <PlaceDetails placeSelected={placeSelected} match={match} />
 
       <div className="component-title">
         <h1>Place List</h1>
