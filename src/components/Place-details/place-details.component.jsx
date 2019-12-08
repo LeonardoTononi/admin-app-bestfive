@@ -57,128 +57,128 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
           <div className="category-icon">
             <img src={NoImage} alt="no icon" />
           </div>
-          <p>
-            {
-              match.path === '/dashboard'
-                ?
-                checkData(placeSelected.category)
-                :
-                match.path === '/add-place' ?
-                  <select ref={register} name="category">
-                    {category.map(item => (
-                      <option value={item.name} key={item.docID}>{item.name}</option>
-                    ))}
-                  </select>
-                  :
-                  <select ref={register} name="category">
-                    {category.map(item => (
-                      <option value={item.name} key={item.docID}>{item.name}</option>
-                    ))}
-                  </select>
-            }
-          </p>
-        </div>
-        <div className="name">
-          <p>
-            {
-              match.path === '/dashboard'
-                ?
-                checkData(placeSelected.name)
-                :
-                match.path === '/add-place' ?
-                  <input
-                    ref={register}
-                    name="name"
-                    type="text"
-                    id="name"
-                  />
-                  :
-                  <input
-                    ref={register}
-                    name="name"
-                    type="text"
-                    id="name"
-                    value={placeSelected.name}
-                  />
-            }
-          </p>
-        </div>
-        <div className="border-line"></div>
-        <div className="google-id">
-          <p>{
+          <p className="category-title"></p>
+          {
             match.path === '/dashboard'
               ?
-              checkData(placeSelected.googleID)
+              <p>{checkData(placeSelected.category)}</p>
+              :
+              match.path === '/add-place' ?
+                <select ref={register({ required: true })} name="category">
+                  {category.map(item => (
+                    <option value={item.name} key={item.docID}>{item.name}</option>
+                  ))}
+                </select>
+                :
+                <select ref={register({ required: true })} name="category">
+                  {category.map(item => (
+                    <option value={item.name} key={item.docID}>{item.name}</option>
+                  ))}
+                </select>
+          }
+        </div>
+        <div className="name">
+          <p className="name-title"></p>
+          {
+            match.path === '/dashboard'
+              ?
+              <p>{checkData(placeSelected.name)}</p>
               :
               match.path === '/add-place' ?
                 <input
-                  ref={register}
+                  ref={register({ required: true })}
+                  name="name"
+                  type="text"
+                  id="name"
+                />
+                :
+                <input
+                  ref={register({ required: true })}
+                  name="name"
+                  type="text"
+                  id="name"
+                  value={placeSelected.name}
+                />
+          }
+
+        </div>
+        <div className="border-line"></div>
+        <div className="google-id">
+          <p className="googleID-title"></p>
+          {
+            match.path === '/dashboard'
+              ?
+
+              <p>{checkData(placeSelected.googleID)}</p>
+
+              :
+              match.path === '/add-place' ?
+                <input
+                  ref={register({ required: true })}
                   name="googleID"
                   type="text"
                   id="googleID"
                 />
                 :
                 <input
-                  ref={register}
+                  ref={register({ required: true })}
                   name="googleID"
                   type="text"
                   id="googleID"
                   value={placeSelected.googleID}
                 />
           }
-          </p>
         </div>
         <div className="bestfive">
-          <p>
-            {
-              match.path === '/dashboard'
-                ?
-                placeSelected.bestfive === 'yes' ?
-                  <img src={YesIcon} alt="yes icon" />
-                  :
-                  <img src={NotIcon} alt="no icon" />
+          <p className="bestfive-title"></p>
+          {
+            match.path === '/dashboard'
+              ?
+              placeSelected.bestfive === 'yes' ?
+                <img src={YesIcon} alt="yes icon" />
                 :
-                match.path === '/add-place' ?
-                  <select name="bestfive" ref={register}>
-                    <option value="yes">yes</option>
-                    <option value="no">no</option>
-                  </select>
-                  :
-                  <select name="bestfive" ref={register}>
-                    <option value={placeSelected.bestfive}>{placeSelected.bestfive}</option>
-                    <option value="yes">yes</option>
-                    <option value="no">no</option>
-                  </select>
-            }
-          </p>
+                <img src={NotIcon} alt="no icon" />
+              :
+              match.path === '/add-place' ?
+                <select name="bestfive" ref={register({ required: true })}>
+                  <option value="yes">yes</option>
+                  <option value="no">no</option>
+                </select>
+                :
+                <select name="bestfive" ref={register({ required: true })}>
+                  <option value={placeSelected.bestfive}>{placeSelected.bestfive}</option>
+                  <option value="yes">yes</option>
+                  <option value="no">no</option>
+                </select>
+          }
         </div>
         <div className="website">
-          <p>
-            {
-              match.path === '/dashboard'
-                ?
-                <p>tapas.com</p>
+          <p className="website-title"></p>
+          {
+            match.path === '/dashboard'
+              ?
+              <p>tapas.com</p>
+              :
+              match.path === '/add-place' ?
+                <input type="text" ref={register({ required: true })} id="website" name="website" />
                 :
-                match.path === '/add-place' ?
-                  <input type="text" ref={register} id="website" name="website" />
-                  :
-                  <input type="text" ref={register} value="website" id="website" name="website" />
-            }
-          </p>
+                <input type="text" ref={register({ required: true })} value="website" id="website" name="website" />
+          }
+
         </div>
         <div className="phone">
-          <p>
-            {
-              match.path === '/dashboard'
-                ?
-                <p>+34 688 544 45</p>
+          <p className="phone-title"></p>
+          {
+            match.path === '/dashboard'
+              ?
+              <p>+34 688 544 45</p>
+              :
+              match.path === '/add-place' ?
+                <input type="text" ref={register({ required: true })} name="phone" id="phone" />
                 :
-                match.path === '/add-place' ?
-                  <input type="text" ref={register} name="phone" id="phone" />
-                  :
-                  <input type="text" ref={register} name="phone" id="phone" value="phone number" />
-            }
-          </p>
+                <input type="text" ref={register({ required: true })} name="phone" id="phone" value="phone number" />
+          }
+
         </div>
         <div className="edit">
           <p>edit</p>
@@ -194,29 +194,29 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               match.path === '/add-place' ?
                 <div>
                   <label>Link 1</label>
-                  <input type="text" ref={register} name="img1" id="img1" />
+                  <input type="text" ref={register({ required: true })} name="img1" id="img1" />
                   <label>Link 2</label>
-                  <input type="text" ref={register} name="img2" id="img2" />
+                  <input type="text" ref={register({ required: true })} name="img2" id="img2" />
                   <label>Link 3</label>
-                  <input type="text" ref={register} name="img3" id="img3" />
+                  <input type="text" ref={register({ required: true })} name="img3" id="img3" />
                   <label>Link 4</label>
-                  <input type="text" ref={register} name="img4" id="img4" />
+                  <input type="text" ref={register({ required: true })} name="img4" id="img4" />
                   <label>Link 5</label>
-                  <input type="text" ref={register} name="img5" id="img5" />
+                  <input type="text" ref={register({ required: true })} name="img5" id="img5" />
                 </div>
 
                 :
                 <div>
                   <label>Link 1</label>
-                  <input type="text" ref={register} name="img1" id="img1" />
+                  <input type="text" ref={register({ required: true })} name="img1" id="img1" />
                   <label>Link 2</label>
-                  <input type="text" ref={register} name="img2" id="img2" />
+                  <input type="text" ref={register({ required: true })} name="img2" id="img2" />
                   <label>Link 3</label>
-                  <input type="text" ref={register} name="img3" id="img3" />
+                  <input type="text" ref={register({ required: true })} name="img3" id="img3" />
                   <label>Link 4</label>
-                  <input type="text" ref={register} name="img4" id="img4" />
+                  <input type="text" ref={register({ required: true })} name="img4" id="img4" />
                   <label>Link 5</label>
-                  <input type="text" ref={register} name="img5" id="img5" />
+                  <input type="text" ref={register({ required: true })} name="img5" id="img5" />
                 </div>
           }
         </div>
@@ -230,13 +230,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               priceIcon()
               :
               match.path === '/add-place' ?
-                <select name="price" ref={register}>
+                <select name="price" ref={register({ required: true })}>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
                 :
-                <select name="price" ref={register}>
+                <select name="price" ref={register({ required: true })}>
                   <option value={placeSelected.price}>{placeSelected.price}</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -255,7 +255,7 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                   :
                   match.path === '/add-place' ?
                     <input
-                      ref={register}
+                      ref={register({ required: true })}
                       name="lat"
                       type="number"
                       id="lat"
@@ -263,7 +263,7 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     />
                     :
                     <input
-                      ref={register}
+                      ref={register({ required: true })}
                       name="lat"
                       type="number"
                       id="lat"
@@ -283,7 +283,7 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                   :
                   match.path === '/add-place' ?
                     <input
-                      ref={register}
+                      ref={register({ required: true })}
                       name="lng"
                       type="number"
                       id="lng"
@@ -291,7 +291,7 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     />
                     :
                     <input
-                      ref={register}
+                      ref={register({ required: true })}
                       name="lng"
                       type="number"
                       id="lng"
@@ -380,13 +380,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Monday</label>
                       <input name="mondayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="mondayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="mondayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="mondayClose"
                         min="00:00"
@@ -395,13 +395,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Tuesday</label>
                       <input name="tuesdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="tuesdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="tuesdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="tuesdayClose"
                         min="00:00"
@@ -410,13 +410,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Wednesday</label>
                       <input name="wednesdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="wednesdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="wednesdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="wednesdayClose"
                         min="00:00"
@@ -425,13 +425,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Thursday</label>
                       <input name="thursdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="thursdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="thursdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="thursdayClose"
                         min="00:00"
@@ -440,13 +440,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Friday</label>
                       <input name="fridayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="fridayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="fridayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="fridayClose"
                         min="00:00"
@@ -455,13 +455,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Saturday</label>
                       <input name="saturdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="saturdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="saturdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="saturdayClose"
                         min="00:00"
@@ -470,13 +470,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Sunday</label>
                       <input name="sundayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="sundayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="sundayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="sundayClose"
                         min="00:00"
@@ -493,13 +493,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Monday</label>
                       <input name="mondayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="mondayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="mondayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="mondayClose"
                         min="00:00"
@@ -508,13 +508,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Tuesday</label>
                       <input name="tuesdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="tuesdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="tuesdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="tuesdayClose"
                         min="00:00"
@@ -523,13 +523,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Wednesday</label>
                       <input name="wednesdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="wednesdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="wednesdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="wednesdayClose"
                         min="00:00"
@@ -538,13 +538,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Thursday</label>
                       <input name="thursdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="thursdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="thursdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="thursdayClose"
                         min="00:00"
@@ -553,13 +553,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Friday</label>
                       <input name="fridayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="fridayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="fridayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="fridayClose"
                         min="00:00"
@@ -568,13 +568,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Saturday</label>
                       <input name="saturdayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="saturdayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="saturdayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="saturdayClose"
                         min="00:00"
@@ -583,13 +583,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                     <div className="row-hours">
                       <label>Sunday</label>
                       <input name="sundayOpen"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="sundayOpen"
                         min="00:00"
                         max="23:59" ></input>
                       <input name="sundayClose"
-                        ref={register}
+                        ref={register({ required: true })}
                         type="time"
                         id="sundayClose"
                         min="00:00"
@@ -610,9 +610,9 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                 <p className="defualt-description">Please write a description</p>
               :
               match.path === '/add-place' ?
-                <textarea ref={register} name="description" id="description" cols="60" rows="20"></textarea>
+                <textarea ref={register({ required: true })} name="description" id="description" cols="60" rows="20"></textarea>
                 :
-                <textarea ref={register} name="description" id="description" cols="60" rows="20" value={placeSelected.description}></textarea>
+                <textarea ref={register({ required: true })} name="description" id="description" cols="60" rows="20" value={placeSelected.description}></textarea>
           }
         </div>
       </div>

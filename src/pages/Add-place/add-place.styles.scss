@@ -92,9 +92,9 @@ form {
   .submit {
     width: 10em;
     padding: 0.8rem;
-    background: #833ab4;
-    color: white;
-    margin-left: 1em;
+    background: #e08d22;
+    color: #ffffff;
+    margin-left: 4em;
     font-size: 1rem;
     border-radius: 20px;
     cursor: pointer;
@@ -102,9 +102,29 @@ form {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1.2px;
+    outline: none;
+    position: absolute;
+    border: 1px solid orange;
 
     &:hover {
       transform: scale(0.97);
     }
+  }
+}
+
+.success-message {
+  font-size: 1.2rem;
+  background: #5bc079;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+
+  img {
+    width: 30px;
+    height: 30px;
+    padding: 13px;
   }
 }

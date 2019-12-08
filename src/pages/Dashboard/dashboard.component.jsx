@@ -47,11 +47,7 @@ const Dashboard = ({ match }) => {
         }))
         setTdContent(newTdContent)
       });
-
   }, []);
-
-  console.log(placeSelected.price)
-
 
   return (
     <div>

@@ -6,11 +6,14 @@ import firebase from '../../firebase'
 import PlaceDetails from '../../components/Place-details/place-details.component'
 import Navbar from '../../components/Navbar/navbar.component';
 
+import SuccessIcon from '../../assets/success.png'
+
 import './add-place.styles.scss'
 
 const AddPlace = ({ match }) => {
 
   const [category, setCategory] = useState([])
+  const [successMessage, setSuccessMessage] = useState(false)
 
   useEffect(() => {
     firebase
@@ -25,8 +28,10 @@ const AddPlace = ({ match }) => {
       })
   }, [])
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
+  const { register, handleSubmit } = useForm({
+
+  });
+  const onSubmit = (data, e) => {
     const { name, googleID, category, price, bestfive, description, lat, lng, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose, wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen, fridayClose, saturdayOpen, saturdayClose, sundayOpen, sundayClose, img1, img2, img3, img4, img5 } = data;
     firebase.firestore().collection('places').add({
       name,
@@ -68,6 +73,17 @@ const AddPlace = ({ match }) => {
         }
       }
     })
+      .then(() => {
+        setSuccessMessage(true)
+        console.log("Place added successfully!");
+        setTimeout(() => {
+          e.target.reset();
+          setSuccessMessage(false);
+        }, 2000)
+      })
+      .catch((err) => {
+        console.log(`ERROR: the error is: ${err} `)
+      })
   }
 
   return (
@@ -76,10 +92,22 @@ const AddPlace = ({ match }) => {
       <Navbar />
       <div className="component-title">
         <h1>Add New Place</h1>
+        {
+          successMessage ?
+            <div className="success-message">
+              <img src={SuccessIcon} alt="success icon" />
+              <p> Place addded successfully!</p>
+            </div>
+            :
+            null
+        }
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <PlaceDetails match={match} category={category} register={register} />
-        <button className="submit" type="submit">ADD PLACE</button>
+        <div className="add-place-button">
+          <button className="submit" type="submit">Add Now</button>
+        </div>
       </form>
 
     </div>
