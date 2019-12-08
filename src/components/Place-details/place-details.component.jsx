@@ -13,6 +13,8 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
   const lng = placeSelected && placeSelected.position ? placeSelected.position.lng : null;
   const week = placeSelected && placeSelected.openingHours ? placeSelected.openingHours : null;
 
+  const images = placeSelected && placeSelected.imageLink ? placeSelected.imageLink : null;
+
   function checkData(item) {
     return item ? item : '-'
   }
@@ -189,7 +191,22 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
           {
             match.path === '/dashboard'
               ?
-              <p>No Image Available</p>
+              images ?
+                <div className="slider">
+                  <div class="slides">
+                    <div id="slide-1">
+                      <img src={images.img1} alt="" />
+                    </div>
+                  </div>
+                  <a href="#slide-1">1</a>
+                  <a href="#slide-2">2</a>
+                  <a href="#slide-3">3</a>
+                  <a href="#slide-4">4</a>
+                  <a href="#slide-5">5</a>
+                </div>
+
+                : null
+
               :
               match.path === '/add-place' ?
                 <div>

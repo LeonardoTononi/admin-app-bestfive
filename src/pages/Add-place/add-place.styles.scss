@@ -105,6 +105,7 @@ form {
     outline: none;
     position: absolute;
     border: 1px solid orange;
+    box-shadow: 0px 4px 6px 0px #eaeaea;
 
     &:hover {
       transform: scale(0.97);
