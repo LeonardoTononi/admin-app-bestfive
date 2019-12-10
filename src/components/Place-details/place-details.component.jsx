@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 
 import './place-details.styles.scss'
+
+import { storage } from '../../firebase'
 
 import YesIcon from '../../assets/icon-done.png'
 import NotIcon from '../../assets/not-icon.png'
@@ -9,16 +12,23 @@ import MoneyIcon from '../../assets/icon-money.png'
 
 const PlaceDetails = ({ placeSelected, match, category, register }) => {
 
+  const [imageFiles, setImageFiles] = useState([])
+  const [placeName, setPlaceName] = useState([])
+  const [imageUrl, setImageUrl] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState([])
+
+  // Check if placeSelected property are present
   const lat = placeSelected && placeSelected.position ? placeSelected.position.lat : null;
   const lng = placeSelected && placeSelected.position ? placeSelected.position.lng : null;
   const week = placeSelected && placeSelected.openingHours ? placeSelected.openingHours : null;
-
   const images = placeSelected && placeSelected.imageLink ? placeSelected.imageLink : null;
 
+  // Check if data is true
   function checkData(item) {
     return item ? item : '-'
   }
 
+  // Assign to given price an icon 
   const priceIcon = () => {
     switch (placeSelected.price) {
       case "1":
@@ -52,6 +62,44 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
     }
   }
 
+  const fileHandler = (event) => {
+    let files = Object.values(event.target.files)
+    setImageFiles(files)
+  }
+
+  const fileUpload = (e) => {
+    e.preventDefault()
+    // Create a root reference
+    imageFiles.map(item => {
+      const storageRef = storage.ref(`places/${selectedCategory}/${placeName}/${item.name}`);
+      let task = storageRef.put(item)
+      return task.on('state_changed',
+        snapshot => {
+          // progress function 
+        },
+        error => {
+          // error function
+        },
+        () => {
+          // on completed 
+          /* storage.ref(`places/${selectedCategory}/${imageFiles[0].name}`).getDownloadURL()
+            .then(url => setImageUrl(url)) */
+          console.log("FILES UPLOADED")
+        }
+      )
+    })
+  }
+
+
+  // listener category selected to use on firebase storage
+  const categoryListener = (e) => {
+    setSelectedCategory(e.target.value)
+  }
+
+  const nameListener = e => {
+    setPlaceName(e.target.value)
+  }
+
   return (
     <div className="place-details-container">
       <div className="place-card main-info">
@@ -66,13 +114,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               <p>{checkData(placeSelected.category)}</p>
               :
               match.path === '/add-place' ?
-                <select ref={register({ required: true })} name="category">
+                <select multiple={false} ref={register({ required: true })} name="category" onChange={categoryListener}>
                   {category.map(item => (
                     <option value={item.name} key={item.docID}>{item.name}</option>
                   ))}
                 </select>
                 :
-                <select ref={register({ required: true })} name="category">
+                <select multiple={false} ref={register({ required: true })} name="category">
                   {category.map(item => (
                     <option value={item.name} key={item.docID}>{item.name}</option>
                   ))}
@@ -89,6 +137,7 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               match.path === '/add-place' ?
                 <input
                   ref={register({ required: true })}
+                  onChange={nameListener}
                   name="name"
                   type="text"
                   id="name"
@@ -142,12 +191,12 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
                 <img src={NotIcon} alt="no icon" />
               :
               match.path === '/add-place' ?
-                <select name="bestfive" ref={register({ required: true })}>
+                <select multiple={false} name="bestfive" ref={register({ required: true })}>
                   <option value="yes">yes</option>
                   <option value="no">no</option>
                 </select>
                 :
-                <select name="bestfive" ref={register({ required: true })}>
+                <select multiple={false} name="bestfive" ref={register({ required: true })}>
                   <option value={placeSelected.bestfive}>{placeSelected.bestfive}</option>
                   <option value="yes">yes</option>
                   <option value="no">no</option>
@@ -210,30 +259,23 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               :
               match.path === '/add-place' ?
                 <div>
-                  <label>Link 1</label>
-                  <input type="text" ref={register({ required: true })} name="img1" id="img1" />
-                  <label>Link 2</label>
-                  <input type="text" ref={register({ required: true })} name="img2" id="img2" />
-                  <label>Link 3</label>
-                  <input type="text" ref={register({ required: true })} name="img3" id="img3" />
-                  <label>Link 4</label>
-                  <input type="text" ref={register({ required: true })} name="img4" id="img4" />
-                  <label>Link 5</label>
-                  <input type="text" ref={register({ required: true })} name="img5" id="img5" />
+                  <label>Add 5 images</label>
+                  <input type="file" multiple={true} onChange={fileHandler} ref={register({ required: true })} name="images" id="images" />
+                  <button onClick={fileUpload}>Upload</button>
                 </div>
 
                 :
                 <div>
-                  <label>Link 1</label>
-                  <input type="text" ref={register({ required: true })} name="img1" id="img1" />
-                  <label>Link 2</label>
-                  <input type="text" ref={register({ required: true })} name="img2" id="img2" />
-                  <label>Link 3</label>
-                  <input type="text" ref={register({ required: true })} name="img3" id="img3" />
-                  <label>Link 4</label>
-                  <input type="text" ref={register({ required: true })} name="img4" id="img4" />
-                  <label>Link 5</label>
-                  <input type="text" ref={register({ required: true })} name="img5" id="img5" />
+                  <label>Image 1</label>
+                  <input type="file" ref={register({ required: true })} name="img1" id="img1" />
+                  <label>Image 2</label>
+                  <input type="file" ref={register({ required: true })} name="img2" id="img2" />
+                  <label>Image 3</label>
+                  <input type="file" ref={register({ required: true })} name="img3" id="img3" />
+                  <label>Image 4</label>
+                  <input type="file" ref={register({ required: true })} name="img4" id="img4" />
+                  <label>Image 5</label>
+                  <input type="file" ref={register({ required: true })} name="img5" id="img5" />
                 </div>
           }
         </div>
@@ -247,13 +289,13 @@ const PlaceDetails = ({ placeSelected, match, category, register }) => {
               priceIcon()
               :
               match.path === '/add-place' ?
-                <select name="price" ref={register({ required: true })}>
+                <select multiple={false} name="price" ref={register({ required: true })}>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
                 :
-                <select name="price" ref={register({ required: true })}>
+                <select multiple={false} name="price" ref={register({ required: true })}>
                   <option value={placeSelected.price}>{placeSelected.price}</option>
                   <option value="1">1</option>
                   <option value="2">2</option>

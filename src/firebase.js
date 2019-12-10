@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: 'AIzaSyDhhndinWvRK67E70Hr70uFRIS0p4YFJ5A',
@@ -14,4 +15,6 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-export default firebase;
+const storage = firebase.storage();
+
+export { storage, firebase as default };

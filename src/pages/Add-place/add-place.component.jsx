@@ -27,19 +27,17 @@ const AddPlace = ({ match }) => {
         setCategory(cat)
       })
   }, [])
-
   const { register, handleSubmit } = useForm({
-
   });
+
   const onSubmit = (data, e) => {
-    const { name, googleID, category, price, bestfive, description, lat, lng, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose, wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen, fridayClose, saturdayOpen, saturdayClose, sundayOpen, sundayClose, img1, img2, img3, img4, img5 } = data;
+    const { name, googleID, category, price, bestfive, description, lat, lng, mondayOpen, mondayClose, tuesdayOpen, tuesdayClose, wednesdayOpen, wednesdayClose, thursdayOpen, thursdayClose, fridayOpen, fridayClose, saturdayOpen, saturdayClose, sundayOpen, sundayClose } = data;
     firebase.firestore().collection('places').add({
       name,
       googleID,
       category,
       price,
       bestfive,
-      imageLink: { img1, img2, img3, img4, img5 },
       position: { lat, lng },
       description,
       openingHours: {
