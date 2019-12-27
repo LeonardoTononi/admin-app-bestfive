@@ -3,7 +3,7 @@ import React from 'react';
 import YesIcon from '../../assets/icon-done.png';
 import NotIcon from '../../assets/not-icon.png';
 
-const PlaceList = ({ tdContent, setPlaceSelected }) => {
+const PlaceList = ({ listContent, setPlaceSelected }) => {
   return (
     <div className='table-container'>
       <div className='search'>
@@ -19,7 +19,8 @@ const PlaceList = ({ tdContent, setPlaceSelected }) => {
           </tr>
         </thead>
         <tbody>
-          {tdContent.map(item => {
+          {listContent.map(item => {
+            const place = item.places[0];
             return (
               <tr
                 key={item.docID}
@@ -27,12 +28,12 @@ const PlaceList = ({ tdContent, setPlaceSelected }) => {
                   setPlaceSelected(item);
                 }}>
                 <td>
-                  <h5>{item.name}</h5>
+                  <h5>{place.name}</h5>
                   <span className='subtitle'>{item.category}</span>
                 </td>
-                <td>{item.googleID}</td>
+                <td>{place.googleID}</td>
                 <td className='bestfive-list'>
-                  {item.bestfive === 'yes' ? (
+                  {place.bestfive === 'yes' ? (
                     <img src={YesIcon} alt='yes icon' />
                   ) : (
                     <img src={NotIcon} alt='no icon' />

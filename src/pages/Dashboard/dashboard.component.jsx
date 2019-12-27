@@ -11,6 +11,7 @@ import './dashboard.styles.scss';
 import PlaceDetails from '../../components/Place-details/place-details.component';
 import Navbar from '../../components/Navbar/navbar.component';
 import PlaceList from '../../components/Places-list/places-list.component';
+import AddPlace from '../../components/Add-place/add-place.component';
 
 /* import BarHopp from '../../assets/category/BarHopp.png'
 import Beach from '../../assets/category/Beach.png'
@@ -32,20 +33,21 @@ import NoImage from '../../assets/no-image.png'
 import MoneyIcon from '../../assets/icon-money.png' */
 
 const Dashboard = ({ match }) => {
-  const [tdContent, setTdContent] = useState([]);
+  const [listContent, setListContent] = useState([]);
   const [placeSelected, setPlaceSelected] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
+  const [toggleAddPlace, setToggleAddPlace] = useState(false);
 
   useEffect(() => {
     firebase
       .firestore()
-      .collection('places')
+      .collection('collections')
       .onSnapshot(snapshot => {
-        const newTdContent = snapshot.docs.map(doc => ({
+        const newListContent = snapshot.docs.map(doc => ({
           docID: doc.id,
           ...doc.data()
         }));
-        setTdContent(newTdContent);
+        setListContent(newListContent);
       });
   }, []);
 
@@ -84,21 +86,31 @@ const Dashboard = ({ match }) => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setToggleAddPlace={setToggleAddPlace} />
 
-      <div className='component-title'>
-        <h1>Place Details</h1>
-      </div>
-      <PlaceDetails
-        placeSelected={placeSelected}
-        match={match}
-        imageUrl={imageUrl}
-      />
+      {toggleAddPlace ? (
+        <AddPlace />
+      ) : (
+        <div>
+          {' '}
+          <div className='component-title'>
+            <h1>Place Details</h1>
+          </div>
+          <PlaceDetails
+            placeSelected={placeSelected}
+            match={match}
+            imageUrl={imageUrl}
+          />
+        </div>
+      )}
 
       <div className='component-title'>
         <h1>Place List</h1>
       </div>
-      <PlaceList tdContent={tdContent} setPlaceSelected={setPlaceSelected} />
+      <PlaceList
+        listContent={listContent}
+        setPlaceSelected={setPlaceSelected}
+      />
     </div>
   );
 };

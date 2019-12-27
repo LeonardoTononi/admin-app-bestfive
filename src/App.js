@@ -18,7 +18,6 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Login} />
             <PrivateRoute path='/dashboard' component={Dashboard} />
-            <PrivateRoute path='/add-place' component={AddPlace} />
           </Switch>
         </BrowserRouter>
       </AuthProvider>
