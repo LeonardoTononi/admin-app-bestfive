@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import firebase from '../../firebase'
+import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase';
 
 import { Link } from 'react-router-dom';
 
-import YesIcon from '../../assets/icon-done.png'
-import NotIcon from '../../assets/not-icon.png'
+import YesIcon from '../../assets/icon-done.png';
+import NotIcon from '../../assets/not-icon.png';
 
-import './dashboard.styles.scss'
+import './dashboard.styles.scss';
 
-import PlaceDetails from '../../components/Place-details/place-details.component'
+import PlaceDetails from '../../components/Place-details/place-details.component';
 import Navbar from '../../components/Navbar/navbar.component';
+import PlaceList from '../../components/Places-list/places-list.component';
 
 /* import BarHopp from '../../assets/category/BarHopp.png'
 import Beach from '../../assets/category/Beach.png'
@@ -30,11 +31,10 @@ import WowTapas from '../../assets/category/WowTapas.png'
 import NoImage from '../../assets/no-image.png'
 import MoneyIcon from '../../assets/icon-money.png' */
 
-
 const Dashboard = ({ match }) => {
-
-  const [tdContent, setTdContent] = useState([])
-  const [placeSelected, setPlaceSelected] = useState([])
+  const [tdContent, setTdContent] = useState([]);
+  const [placeSelected, setPlaceSelected] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     firebase
@@ -44,66 +44,63 @@ const Dashboard = ({ match }) => {
         const newTdContent = snapshot.docs.map(doc => ({
           docID: doc.id,
           ...doc.data()
-        }))
-        setTdContent(newTdContent)
+        }));
+        setTdContent(newTdContent);
       });
   }, []);
+
+  /*  useEffect(() => placeSelected ? displayImageFromStorage() : console.log("Select a Place inside the list!")) */
+
+  /* const displayImageFromStorage = () => {
+    const listRef = storage.ref(`places/${placeSelected.category}/${placeSelected.name}/`);
+    listRef.listAll().then(function (res) {
+      res.items.forEach(function (itemRef) {
+        // All the items under listRef, set url to state
+        itemRef.getDownloadURL().then(url => console.log(url))
+      });
+    }).catch(function (error) {
+      // Uh-oh, an error occurred!
+    });
+  } */
+
+  /* const displayImageFromStorage = () => {
+    const storageRef = storage.ref();
+    const ref = storageRef.child(`places/${placeSelected.category}/${placeSelected.name}/benzina2.png`);
+    ref.getDownloadURL().then(function (url) {
+      // setImageUrl(url)
+      firebase.firestore().collection('places').where("name", "==", placeSelected.name)
+        .get()
+        .then(snapShot => snapShot.forEach(doc => {
+          firebase.firestore().collection('places').doc(doc.id)
+            .update({
+              imageLinks: {
+                img_1: url
+              }
+            })
+            .then(snapshot => console.log(snapshot))
+        }))
+    })
+  } */
 
   return (
     <div>
       <Navbar />
 
-      <div className="component-title">
+      <div className='component-title'>
         <h1>Place Details</h1>
       </div>
-      <PlaceDetails placeSelected={placeSelected} match={match} />
+      <PlaceDetails
+        placeSelected={placeSelected}
+        match={match}
+        imageUrl={imageUrl}
+      />
 
-      <div className="component-title">
+      <div className='component-title'>
         <h1>Place List</h1>
       </div>
-
-      <div className="table-container">
-        <div className="search">
-          <label>Search</label>
-          <input type="text" />
-        </div>
-        <table className="table-content">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>GoogleID</th>
-              <th>Bestfive</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              tdContent.map(item => {
-                return (
-                  <tr key={item.docID} onClick={() => {
-                    setPlaceSelected(item);
-                  }}>
-                    <td>
-                      <h5>{item.name}</h5>
-                      <span className="subtitle">{item.category}</span>
-                    </td>
-                    <td>{item.googleID}</td>
-                    <td className="bestfive-list">
-                      {
-                        item.bestfive === 'yes' ?
-                          <img src={YesIcon} alt="yes icon" />
-                          :
-                          <img src={NotIcon} alt="no icon" />
-                      }
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
-      </div>
+      <PlaceList tdContent={tdContent} setPlaceSelected={setPlaceSelected} />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
