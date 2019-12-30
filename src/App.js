@@ -4,7 +4,6 @@ import { AuthProvider } from './Auth';
 import './App.scss';
 
 import UserNav from './components/User-nav/user-nav.component';
-import AddPlace from './pages/Add-place/add-place.component';
 import Dashboard from './pages/Dashboard/dashboard.component';
 import Login from './pages/Login/login.component';
 import PrivateRoute from './PrivateRoute';

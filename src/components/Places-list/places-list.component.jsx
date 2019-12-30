@@ -20,7 +20,6 @@ const PlaceList = ({ listContent, setPlaceSelected }) => {
         </thead>
         <tbody>
           {listContent.map(item => {
-            const place = item.places[0];
             return (
               <tr
                 key={item.docID}
@@ -28,12 +27,12 @@ const PlaceList = ({ listContent, setPlaceSelected }) => {
                   setPlaceSelected(item);
                 }}>
                 <td>
-                  <h5>{place.name}</h5>
+                  <h5>{item.name}</h5>
                   <span className='subtitle'>{item.category}</span>
                 </td>
-                <td>{place.googleID}</td>
+                <td>{item.googleID}</td>
                 <td className='bestfive-list'>
-                  {place.bestfive === 'yes' ? (
+                  {item.bestfive === 'yes' ? (
                     <img src={YesIcon} alt='yes icon' />
                   ) : (
                     <img src={NotIcon} alt='no icon' />

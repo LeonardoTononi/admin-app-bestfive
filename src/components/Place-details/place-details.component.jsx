@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase/firebase';
+import { storage } from '../../firebase/firebase';
+import {
+  uploadOnStorageAndSetLinkDb_1,
+  uploadOnStorageAndSetLinkDb_2,
+  uploadOnStorageAndSetLinkDb_3,
+  uploadOnStorageAndSetLinkDb_4,
+  uploadOnStorageAndSetLinkDb_5
+} from '../../firebase/upload-image-functions';
 
 import './place-details.styles.scss';
 
 import YesIcon from '../../assets/icon-done.png';
 import NotIcon from '../../assets/not-icon.png';
-import NoImage from '../../assets/no-image.png';
 import MoneyIcon from '../../assets/icon-money.png';
+import ImageGhost from '../../assets/image-ghost.svg';
+import NoImage from '../../assets/no-image.png';
 
 const PlaceDetails = ({ placeSelected, imageUrl }) => {
-  const place = placeSelected ? placeSelected.places[0] : '-';
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
   // Check if placeSelected property are present
-  const lat = place && place.position ? place.position.lat : null;
-  const lng = place && place.position ? place.position.lng : null;
-  const week = place && place.openingHours ? place.openingHours : null;
-  const images = place && place.imageLink ? place.imageLink : null;
+  const lat =
+    placeSelected && placeSelected.position ? placeSelected.position.lat : null;
+  const lng =
+    placeSelected && placeSelected.position ? placeSelected.position.lng : null;
+  const week =
+    placeSelected && placeSelected.openingHours
+      ? placeSelected.openingHours
+      : null;
 
   // Check if data is true
   function checkData(item) {
@@ -22,13 +37,13 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
 
   // Assign to given price an icon
   const priceIcon = () => {
-    switch (place.price) {
+    switch (placeSelected.price) {
       case '1':
         return (
           <div>
             <img src={MoneyIcon} alt='icon money' />
-            <img src={MoneyIcon} alt='icon money' className='oapcity' />
-            <img src={MoneyIcon} alt='icon money' className='oapcity' />
+            <img src={MoneyIcon} alt='icon money' className='opacity' />
+            <img src={MoneyIcon} alt='icon money' className='opacity' />
           </div>
         );
       case '2':
@@ -36,7 +51,7 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
           <div>
             <img src={MoneyIcon} alt='icon money' />
             <img src={MoneyIcon} alt='icon money' />
-            <img src={MoneyIcon} alt='icon money' className='oapcity' />
+            <img src={MoneyIcon} alt='icon money' className='opacity' />
           </div>
         );
       case '3':
@@ -52,6 +67,53 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
     }
   };
 
+  const fileHandler = event => {
+    let files = Object.values(event.target.files);
+    setImageFiles(files);
+  };
+
+  const fileUpload = e => {
+    e.preventDefault();
+    uploadOnStorageAndSetLinkDb_1(selectedCategory, placeSelected, imageFiles);
+    uploadOnStorageAndSetLinkDb_2(selectedCategory, placeSelected, imageFiles);
+    uploadOnStorageAndSetLinkDb_3(selectedCategory, placeSelected, imageFiles);
+    uploadOnStorageAndSetLinkDb_4(selectedCategory, placeSelected, imageFiles);
+    uploadOnStorageAndSetLinkDb_5(selectedCategory, placeSelected, imageFiles);
+  };
+
+  const imagesAreAlreadyUploaded = () => {
+    if (
+      (placeSelected.imageLink_1 !== '') &
+      (placeSelected.imageLink_2 !== '') &
+      (placeSelected.imageLink_3 !== '') &
+      (placeSelected.imageLink_4 !== '') &
+      (placeSelected.imageLink_5 !== '')
+    ) {
+      return (
+        <div className='slider'>
+          <img src={placeSelected.imageLink_1} alt='' />
+          <img src={placeSelected.imageLink_2} alt='' />
+          <img src={placeSelected.imageLink_3} alt='' />
+          <img src={placeSelected.imageLink_4} alt='' />
+          <img src={placeSelected.imageLink_5} alt='' />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <label>Add 5 images</label>
+          <input
+            type='file'
+            multiple={true}
+            onChange={fileHandler}
+            name='images'
+            id='images'
+          />
+          <button onClick={fileUpload}>Upload</button>
+        </div>
+      );
+    }
+  };
   return (
     <div className='place-details-container'>
       <div className='place-card main-info'>
@@ -60,21 +122,21 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
             <img src={NoImage} alt='no icon' />
           </div>
           <p className='category-title'></p>
-          <p>{checkData(place.category)}</p>
+          <p>{checkData(placeSelected.category)}</p>
         </div>
         <div></div>
         <div className='name'>
           <p className='name-title'></p>
-          <p>{checkData(place.name)}</p>
+          <p>{checkData(placeSelected.name)}</p>
         </div>
         <div className='border-line'></div>
         <div className='google-id'>
           <p className='googleID-title'></p>
-          <p>{checkData(place.googleID)}</p>
+          <p>{checkData(placeSelected.googleID)}</p>
         </div>
         <div className='bestfive'>
           <p className='bestfive-title'></p>
-          {place.bestfive === 'yes' ? (
+          {placeSelected.bestfive === 'yes' ? (
             <img src={YesIcon} alt='yes icon' />
           ) : (
             <img src={NotIcon} alt='no icon' />
@@ -82,41 +144,24 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
         </div>
         <div className='website'>
           <p className='website-title'></p>
-          <p>tapas.com</p>
+          <p>{checkData(placeSelected.website)}</p>
         </div>
         <div className='phone'>
           <p className='phone-title'></p>
 
-          <p>+34 688 544 45</p>
+          <p>{checkData(placeSelected.phone)}</p>
         </div>
         <div className='edit'>
           <p>edit</p>
         </div>
       </div>
       <div className='place-card images'>
-        <div className='image'>
-          {images ? (
-            <div className='slider'>
-              <div className='slides'>
-                <div id='slide-1'>
-                  <img src={imageUrl} alt='' />
-                </div>
-              </div>
-              <a href='#slide-1'>1</a>
-              <a href='#slide-2'>2</a>
-              <a href='#slide-3'>3</a>
-              <a href='#slide-4'>4</a>
-              <a href='#slide-5'>5</a>
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
+        <div className='image'>{imagesAreAlreadyUploaded()}</div>
       </div>
+
       <div className='place-card secondary-info'>
         <div className='price'>
           <p></p>
-
           {priceIcon()}
         </div>
         <div className='position'>
@@ -210,10 +255,10 @@ const PlaceDetails = ({ placeSelected, imageUrl }) => {
       </div>
       <div className='place-card description'>
         <div className='text'>
-          {place.description ? (
-            <p>{place.description}</p>
+          {placeSelected.description ? (
+            <p>{placeSelected.description}</p>
           ) : (
-            <p className='defualt-description'>Please write a description</p>
+            <p className='default-description'>Please write a description</p>
           )}
         </div>
       </div>
