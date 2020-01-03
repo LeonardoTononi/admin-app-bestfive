@@ -202,12 +202,8 @@ const AddPlace = () => {
             </div>
           </div>
 
-          <div className='place-card images'>
-            <div className='image'>
-              <div>
-                <img src={ImageGhost} alt='' />
-              </div>
-            </div>
+          <div className='place-card place-images'>
+            <img src={ImageGhost} alt='' />
           </div>
           <div className='place-card secondary-info'>
             <div className='price'>

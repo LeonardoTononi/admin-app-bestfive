@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "embla-carousel": "^2.6.6",
+    "embla-carousel-react": "^1.2.10",
     "eslint-plugin-react-hooks": "^2.3.0",
     "firebase": "^7.2.3",
     "geofirestore": "^3.3.1",
