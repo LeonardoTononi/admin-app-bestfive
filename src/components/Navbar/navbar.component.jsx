@@ -13,7 +13,8 @@ const Navbar = ({
   toggleAddPlace,
   setToggleAddPlace,
   toggleEditPlace,
-  setToggleEditPlace
+  setToggleEditPlace,
+  setPlaceSelected
 }) => {
   return (
     <div className='navbar-container'>
@@ -28,11 +29,12 @@ const Navbar = ({
           <Link
             to='/dashboard'
             onClick={() => {
-              setToggleAddPlace(!toggleAddPlace);
+              setToggleAddPlace(false);
               setToggleEditPlace({
                 toggle: false,
                 place: ''
               });
+              setPlaceSelected(null);
             }}>
             <div className='icon'>
               <img src={DashboardIcon} alt='dashboard icon' />

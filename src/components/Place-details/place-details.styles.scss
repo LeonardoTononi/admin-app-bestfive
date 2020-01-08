@@ -221,76 +221,97 @@
     display: grid;
     place-content: center;
     grid-gap: 20px;
+  }
 
-    .file {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
+   .add-image-container-edit {
+    display: grid;
+    place-content: center;
+    grid-gap: 20px;
+    position: absolute;
+    background: #ffffff00;
+    top: 50%;
+    left: 50%;
+    margin-left: -115px;
+    margin-top: -47px;
+  }
+
+  .edit-alert-text {
+    position: absolute;
+    top: -50px;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+  }
+
+  .file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 1.5rem;
+
+    input {
+      min-width: 14rem;
+      margin: 0;
+      filter: alpha(opacity=0);
+      opacity: 0;
+    }
+
+    .file-custom {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 5;
       height: 1.5rem;
+      padding: 0.5rem 1rem;
+      line-height: 1.5;
+      color: #585858;
+      background-color: #fff;
+      border: 0.075rem solid #ddd;
+      border-radius: 0.25rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
 
-      input {
-        min-width: 14rem;
-        margin: 0;
-        filter: alpha(opacity=0);
-        opacity: 0;
-      }
-
-      .file-custom {
+      &:before {
         position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 5;
+        top: -0.075rem;
+        right: -0.075rem;
+        bottom: -0.075rem;
+        z-index: 6;
+        display: block;
+        content: "📁";
         height: 1.5rem;
         padding: 0.5rem 1rem;
         line-height: 1.5;
         color: #585858;
-        background-color: #fff;
+        background-color: #f3f3f3;
         border: 0.075rem solid #ddd;
-        border-radius: 0.25rem;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
 
-        &:before {
-          position: absolute;
-          top: -0.075rem;
-          right: -0.075rem;
-          bottom: -0.075rem;
-          z-index: 6;
-          display: block;
-          content: "📁";
-          height: 1.5rem;
-          padding: 0.5rem 1rem;
-          line-height: 1.5;
-          color: #585858;
-          background-color: #f3f3f3;
-          border: 0.075rem solid #ddd;
-          border-radius: 0 0.25rem 0.25rem 0;
-        }
-
-        &:after {
-          content: "Select 5 images";
-        }
+      &:after {
+        content: "Select 5 images";
       }
     }
+  }
 
-    button {
-      width: 80px;
-      margin: 10px auto;
-      border: 1px solid #c7c7c7;
-      font-size: 1rem;
-      color: #585858;
-      padding: 5px;
-      border-radius: 0.25rem;
-      cursor: pointer;
-      transition: background 100ms ease-in-out;
+  .add-image-btn {
+    width: 80px;
+    margin: 10px auto;
+    border: 1px solid #c7c7c7;
+    font-size: 1rem;
+    color: #585858;
+    padding: 5px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 100ms ease-in-out;
 
-      &:hover {
-        background: #585858;
-        color: white;
-      }
+    &:hover {
+      background: #585858;
+      color: white;
     }
   }
 

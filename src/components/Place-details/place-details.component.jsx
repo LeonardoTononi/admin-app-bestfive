@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { storage } from '../../firebase/firebase';
-import EmblaCarouselReact from 'embla-carousel-react';
 
+import ImageCarouselOrUpload from '../Images-carousel-upload/images-carousel-upload.component';
 import {
   uploadOnStorageAndSetLinkDb_1,
   uploadOnStorageAndSetLinkDb_2,
@@ -16,17 +16,12 @@ import YesIcon from '../../assets/icon-done.png';
 import NotIcon from '../../assets/not-icon.png';
 import MoneyIcon from '../../assets/icon-money.png';
 import NoImage from '../../assets/no-image.png';
-import forwardIcon from '../../assets/icons/icons8-forward-50.png';
-import backwardIcon from '../../assets/icons/icons8-back-50.png';
 
 class PlaceDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categoryImgUrl: '',
-      imageFiles: []
-    };
-  }
+  state = {
+    categoryImgUrl: '',
+    imageFiles: []
+  };
 
   // Download from storage icon category
   downloadCategoryImages = async categoryName => {
@@ -89,12 +84,6 @@ class PlaceDetails extends Component {
       }
     };
 
-    // Upload image on storage functions
-    const fileHandler = event => {
-      let files = Object.values(event.target.files);
-      this.setState({ imageFiles: files });
-    };
-
     const fileUpload = e => {
       e.preventDefault();
       const { imageFiles } = this.state;
@@ -125,19 +114,10 @@ class PlaceDetails extends Component {
       );
     };
 
-    const carouselOptions = {
-      align: 'center',
-      containerSelector: '*',
-      slidesToScroll: 1,
-      containScroll: true,
-      draggable: true,
-      dragFree: true,
-      loop: false,
-      speed: 10,
-      startIndex: 0,
-      selectedClass: 'is-selected',
-      draggableClass: 'is-draggable',
-      draggingClass: 'is-dragging'
+    // Upload image on storage functions
+    const fileHandler = event => {
+      let files = Object.values(event.target.files);
+      this.setState({ imageFiles: files });
     };
 
     const imagesAreAlreadyUploaded = () => {
@@ -148,54 +128,20 @@ class PlaceDetails extends Component {
         (placeSelected.imageLink_4 !== '') &
         (placeSelected.imageLink_5 !== '')
       ) {
-        return (
-          <div className='carousel-container'>
-            <EmblaCarouselReact
-              emblaRef={c => (this.embla = c)}
-              options={carouselOptions}>
-              <div style={{ display: 'flex' }}>
-                <div className='image-container'>
-                  <img src={placeSelected.imageLink_1} alt='' />
-                </div>
-                <div className='image-container'>
-                  <img src={placeSelected.imageLink_2} alt='' />
-                </div>
-                <div className='image-container'>
-                  <img src={placeSelected.imageLink_3} alt='' />
-                </div>
-                <div className='image-container'>
-                  <img src={placeSelected.imageLink_4} alt='' />
-                </div>
-                <div className='image-container'>
-                  <img src={placeSelected.imageLink_5} alt='' />
-                </div>
-              </div>
-            </EmblaCarouselReact>
-            <div className='carousel-buttons'>
-              <button onClick={() => this.embla.scrollPrev()}>
-                <img src={backwardIcon} alt='' />
-              </button>
-              <button onClick={() => this.embla.scrollNext()}>
-                <img src={forwardIcon} alt='' />
-              </button>
-            </div>
-          </div>
-        );
+        return placeSelected ? (
+          <ImageCarouselOrUpload
+            isCarousel
+            placeSelected={placeSelected}
+            fileUpload={fileUpload}
+          />
+        ) : null;
       } else {
         return (
-          <div className='add-image-container'>
-            <label className='file'>
-              <input
-                type='file'
-                multiple={true}
-                onChange={fileHandler}
-                name='images'
-                id='images'
-              />
-              <span className='file-custom'></span>
-            </label>
-            <button onClick={fileUpload}>Upload</button>
-          </div>
+          <ImageCarouselOrUpload
+            isUpload
+            fileUpload={fileUpload}
+            fileHandler={fileHandler}
+          />
         );
       }
     };

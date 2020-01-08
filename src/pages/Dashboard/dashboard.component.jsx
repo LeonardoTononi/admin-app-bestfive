@@ -12,7 +12,7 @@ import SelectList from '../../assets/select-list.svg';
 
 const Dashboard = ({ match }) => {
   const [listContent, setListContent] = useState([]);
-  const [placeSelected, setPlaceSelected] = useState(false);
+  const [placeSelected, setPlaceSelected] = useState(null);
   const [toggleAddPlace, setToggleAddPlace] = useState(false);
   const [toggleEditPlace, setToggleEditPlace] = useState({
     toggle: false,
@@ -39,6 +39,7 @@ const Dashboard = ({ match }) => {
         setToggleAddPlace={setToggleAddPlace}
         toggleEditPlace={toggleEditPlace}
         setToggleEditPlace={setToggleEditPlace}
+        setPlaceSelected={setPlaceSelected}
       />
 
       {toggleAddPlace ? (

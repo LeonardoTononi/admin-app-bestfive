@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase/firebase';
 import useForm from 'react-hook-form';
 
+import ImagesCarouselUpload from '../Images-carousel-upload/images-carousel-upload.component';
+import {
+  uploadOnStorageAndSetLinkDb_1,
+  uploadOnStorageAndSetLinkDb_2,
+  uploadOnStorageAndSetLinkDb_3,
+  uploadOnStorageAndSetLinkDb_4,
+  uploadOnStorageAndSetLinkDb_5
+} from '../../firebase/upload-image-functions';
+
 import NoImage from '../../assets/no-image.png';
 import SuccessIcon from '../../assets/success.png';
 
@@ -11,6 +20,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
   const [category, setCategory] = useState([]);
   const [successMessage, setSuccessMessage] = useState(false);
   const [successMessageEdit, setSuccessMessageEdit] = useState(false);
+  const [imageFiles, setImageFiles] = useState([]);
 
   useEffect(() => {
     firebase
@@ -176,6 +186,41 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
           });
   };
 
+  const fileUpload = e => {
+    e.preventDefault();
+    uploadOnStorageAndSetLinkDb_1(
+      toggleEditPlace.category,
+      toggleEditPlace,
+      imageFiles
+    );
+    uploadOnStorageAndSetLinkDb_2(
+      toggleEditPlace.category,
+      toggleEditPlace,
+      imageFiles
+    );
+    uploadOnStorageAndSetLinkDb_3(
+      toggleEditPlace.category,
+      toggleEditPlace,
+      imageFiles
+    );
+    uploadOnStorageAndSetLinkDb_4(
+      toggleEditPlace.category,
+      toggleEditPlace,
+      imageFiles
+    );
+    uploadOnStorageAndSetLinkDb_5(
+      toggleEditPlace.category,
+      toggleEditPlace,
+      imageFiles
+    );
+  };
+
+  // Upload image on storage functions
+  const fileHandler = event => {
+    let files = Object.values(event.target.files);
+    setImageFiles(files);
+  };
+
   const place =
     toggleEditPlace && toggleEditPlace.toggle ? toggleEditPlace.place : '';
 
@@ -234,7 +279,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
               <p className='category-title'></p>
               <select
                 multiple={false}
-                defaultValue="Italian"
+                defaultValue='Italian'
                 ref={register({ required: true })}
                 name='category'>
                 {category.map(item => (
@@ -289,9 +334,24 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
           </div>
 
           <div className='place-card place-images'>
-            <p className='reminder-img'>
-              Remind to upload the images later <br /> in the dashboard.
-            </p>
+            {toggleEditPlace ? (
+              <div>
+                <p className='edit-alert-text'>
+                  Be careful that in case of upload all the images will be
+                  overwritten!
+                </p>
+                <ImagesCarouselUpload
+                  placeSelected={toggleEditPlace.place}
+                  fileUpload={fileUpload}
+                  fileHandler={fileHandler}
+                  isEdit
+                />
+              </div>
+            ) : (
+              <p className='reminder-img'>
+                Remind to upload the images later <br /> in the dashboard.
+              </p>
+            )}
           </div>
           <div className='place-card secondary-info'>
             <div className='price'>
