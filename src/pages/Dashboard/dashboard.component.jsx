@@ -8,11 +8,16 @@ import Navbar from '../../components/Navbar/navbar.component';
 import PlaceList from '../../components/Places-list/places-list.component';
 import AddPlace from '../../components/Add-place/add-place.component';
 
+import SelectList from '../../assets/select-list.svg';
+
 const Dashboard = ({ match }) => {
   const [listContent, setListContent] = useState([]);
   const [placeSelected, setPlaceSelected] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
   const [toggleAddPlace, setToggleAddPlace] = useState(false);
+  const [toggleEditPlace, setToggleEditPlace] = useState({
+    toggle: false,
+    place: []
+  });
 
   useEffect(() => {
     firebase
@@ -29,30 +34,57 @@ const Dashboard = ({ match }) => {
 
   return (
     <div>
-      <Navbar setToggleAddPlace={setToggleAddPlace} />
+      <Navbar
+        toggleAddPlace={toggleAddPlace}
+        setToggleAddPlace={setToggleAddPlace}
+        toggleEditPlace={toggleEditPlace}
+        setToggleEditPlace={setToggleEditPlace}
+      />
 
       {toggleAddPlace ? (
         <AddPlace />
+      ) : toggleEditPlace.toggle ? (
+        <AddPlace
+          toggleEditPlace={toggleEditPlace}
+          setToggleEditPlace={setToggleEditPlace}
+        />
+      ) : placeSelected ? (
+        <div>
+          {' '}
+          <div className='component-title'>
+            <h1>Place Details</h1>
+            <p className='title-description'>
+              Refresh the page to unselect a place.
+            </p>
+          </div>
+          <PlaceDetails placeSelected={placeSelected} match={match} />
+        </div>
       ) : (
         <div>
           {' '}
           <div className='component-title'>
             <h1>Place Details</h1>
+            <p className='title-description'>
+              Select a place inside the place list if you want see more details
+              about it.
+            </p>
+            <img src={SelectList} alt='' />
           </div>
-          <PlaceDetails
-            placeSelected={placeSelected}
-            match={match}
-            imageUrl={imageUrl}
-          />
         </div>
       )}
 
       <div className='component-title'>
         <h1>Place List</h1>
+        <p className='title-description'>
+          You can select, search for place name or category, use the filters or
+          edit and delete a specific place from the database.
+        </p>
       </div>
       <PlaceList
         listContent={listContent}
         setPlaceSelected={setPlaceSelected}
+        toggleEditPlace={toggleEditPlace}
+        setToggleEditPlace={setToggleEditPlace}
       />
     </div>
   );

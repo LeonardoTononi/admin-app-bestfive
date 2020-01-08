@@ -2,7 +2,7 @@
 
 .component-title {
   padding: 4em 8em;
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
 
   h1 {
@@ -21,6 +21,7 @@
   padding: 0 0 4em 0;
   max-width: 1800px;
   margin: 0 auto;
+  justify-items: center;
 
   p {
     margin: 0;
@@ -63,10 +64,10 @@
 
   .main-info {
     grid-template-areas:
-      'category category edit'
-      'name name googleID'
-      'border border border'
-      'bestfive web phone';
+      "category category category"
+      "name name googleID"
+      "border border border"
+      "web web phone";
     align-items: center;
     height: 400px;
 
@@ -87,7 +88,7 @@
         border-radius: 13px;
         width: 30px;
         height: 30px;
-        top: 1.4rem;
+        top: 1.7rem;
         -webkit-transition: 250ms ease-in-out;
         transition: 250ms ease-in-out;
         padding: 10px;
@@ -106,7 +107,7 @@
       }
 
       .category-title:before {
-        content: 'Category';
+        content: "Category";
         font-size: 1rem;
         position: absolute;
         bottom: 0.1rem;
@@ -123,28 +124,11 @@
       }
 
       .name-title:before {
-        content: 'Name';
+        content: "Name";
         font-size: 1rem;
         position: absolute;
         bottom: 0.2rem;
         color: #a9a9a9;
-      }
-    }
-
-    .bestfive {
-      grid-area: bestfive;
-      place-self: center;
-
-      .bestfive-title:before {
-        content: 'Bestfive';
-        font-size: 1rem;
-        position: absolute;
-        bottom: 1rem;
-        color: #a9a9a9;
-      }
-
-      img {
-        width: 22px;
       }
     }
 
@@ -153,7 +137,7 @@
       place-self: center;
 
       .website-title:before {
-        content: 'Website';
+        content: "Website";
         font-size: 1rem;
         position: absolute;
         bottom: 1rem;
@@ -166,7 +150,7 @@
       place-self: center;
 
       .phone-title:before {
-        content: 'Phone';
+        content: "Phone";
         font-size: 1rem;
         position: absolute;
         bottom: 1rem;
@@ -179,10 +163,10 @@
       place-self: center;
 
       .googleID-title:before {
-        content: 'GoogleID';
+        content: "GoogleID";
         font-size: 1rem;
         position: absolute;
-        bottom: 0.9rem;
+        bottom: 0.2rem;
         color: #a9a9a9;
       }
     }
@@ -276,7 +260,7 @@
           bottom: -0.075rem;
           z-index: 6;
           display: block;
-          content: '📁';
+          content: "📁";
           height: 1.5rem;
           padding: 0.5rem 1rem;
           line-height: 1.5;
@@ -287,7 +271,7 @@
         }
 
         &:after {
-          content: 'Select 5 images';
+          content: "Select 5 images";
         }
       }
     }
@@ -312,9 +296,9 @@
 
   .secondary-info {
     grid-template-areas:
-      'price position edit'
-      'border border border'
-      'hours hours hours';
+      "price position bestfive"
+      "border border border"
+      "hours hours hours";
     align-items: center;
     height: 400px;
 
@@ -332,7 +316,7 @@
       }
 
       p:before {
-        content: 'Price';
+        content: "Price";
         font-size: 1rem;
         position: absolute;
         bottom: 4rem;
@@ -350,11 +334,28 @@
       }
 
       p:before {
-        content: 'Position';
+        content: "Position";
         font-size: 1rem;
         position: absolute;
         bottom: 4.5rem;
         color: #a9a9a9;
+      }
+    }
+
+    .bestfive {
+      grid-area: bestfive;
+      place-self: center;
+
+      .bestfive-title:before {
+        content: "Bestfive";
+        font-size: 1rem;
+        position: absolute;
+        top: 1rem;
+        color: #a9a9a9;
+      }
+
+      img {
+        width: 22px;
       }
     }
 
@@ -364,7 +365,7 @@
       padding-left: 1rem;
 
       &:before {
-        content: 'Opening Hours';
+        content: "Opening Hours";
         font-size: 1rem;
         position: absolute;
         top: -2rem;
@@ -388,7 +389,7 @@
   }
 
   .description {
-    grid-template-areas: 'text edit';
+    grid-template-areas: "text edit";
     grid-template-columns: 1fr;
 
     .default-description {
@@ -405,7 +406,7 @@
         margin: 6rem;
 
         &::before {
-          content: '\201C';
+          content: "\201C";
           position: absolute;
           font-size: 10em;
           color: #833ab4;

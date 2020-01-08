@@ -9,7 +9,12 @@ import FiveHand from '../../assets/violetHand.png';
 import LogOut from '../../assets/icons/logout.png';
 import './navbar.styles.scss';
 
-const Navbar = ({ setToggleAddPlace }) => {
+const Navbar = ({
+  toggleAddPlace,
+  setToggleAddPlace,
+  toggleEditPlace,
+  setToggleEditPlace
+}) => {
   return (
     <div className='navbar-container'>
       <ul>
@@ -20,7 +25,15 @@ const Navbar = ({ setToggleAddPlace }) => {
           </Link>
         </li>
         <li className='dashboard-nav'>
-          <Link to='/dashboard' onClick={() => setToggleAddPlace(false)}>
+          <Link
+            to='/dashboard'
+            onClick={() => {
+              setToggleAddPlace(!toggleAddPlace);
+              setToggleEditPlace({
+                toggle: false,
+                place: ''
+              });
+            }}>
             <div className='icon'>
               <img src={DashboardIcon} alt='dashboard icon' />
             </div>
@@ -28,7 +41,15 @@ const Navbar = ({ setToggleAddPlace }) => {
           </Link>
         </li>
         <li className='add-place-nav'>
-          <Link to='/dashboard' onClick={() => setToggleAddPlace(true)}>
+          <Link
+            to='/dashboard'
+            onClick={() => {
+              setToggleAddPlace(!toggleAddPlace);
+              setToggleEditPlace({
+                toggle: false,
+                place: ''
+              });
+            }}>
             <div className='icon'>
               <img src={AddPlaceIcon} alt='add place icon' />
             </div>

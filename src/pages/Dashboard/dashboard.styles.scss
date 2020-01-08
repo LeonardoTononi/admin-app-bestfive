@@ -1,13 +1,23 @@
 // COMPONENT TITLE
 
 .component-title {
-  padding: 4em 8em;
+  padding: 2em 8em;
   max-width: 1200px;
   margin: 0 auto;
 
   h1 {
     padding: 0;
     color: #a0a0a0;
+  }
+
+  .title-description {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  img {
+    width: 250px;
+    padding-top: 5em;
   }
 }
 
@@ -80,6 +90,49 @@
 
         span {
           font-size: 1em;
+        }
+      }
+
+      .row-actions {
+        display: inline-flex;
+
+        img {
+          width: 25px;
+          margin: 5px;
+          transition: transform 100ms ease-in;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+
+        .delete {
+          padding: 5px;
+
+          img {
+            position: relative;
+            bottom: 2px;
+          }
+        }
+
+        .edit {
+          padding: 5px;
+        }
+
+        .view-more {
+          img {
+            position: relative;
+            top: 5px;
+            width: 23px;
+          }
+        }
+
+        .delete,
+        .edit,
+        .view-more {
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
 

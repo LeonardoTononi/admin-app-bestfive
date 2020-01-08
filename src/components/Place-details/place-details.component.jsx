@@ -213,27 +213,22 @@ class PlaceDetails extends Component {
                 <img src={NoImage} alt='no icon' />
               )}
             </div>
-            <p className='category-title'></p>
-            <p>{checkData(placeSelected.category)}</p>
+            <div>
+              <p className='category-title'></p>
+              <p>{checkData(placeSelected.category)}</p>
+            </div>
           </div>
           <div></div>
           <div className='name'>
             <p className='name-title'></p>
             <p>{checkData(placeSelected.name)}</p>
           </div>
-          <div className='border-line'></div>
           <div className='google-id'>
             <p className='googleID-title'></p>
             <p>{checkData(placeSelected.googleID)}</p>
           </div>
-          <div className='bestfive'>
-            <p className='bestfive-title'></p>
-            {placeSelected.bestfive === 'yes' ? (
-              <img src={YesIcon} alt='yes icon' />
-            ) : (
-              <img src={NotIcon} alt='no icon' />
-            )}
-          </div>
+          <div className='border-line'></div>
+
           <div className='website'>
             <p className='website-title'></p>
             <p>{checkData(placeSelected.website)}</p>
@@ -260,6 +255,14 @@ class PlaceDetails extends Component {
             <div className='lng'>
               <p>Lg - {checkData(lng)}</p>
             </div>
+          </div>
+          <div className='bestfive'>
+            <p className='bestfive-title'></p>
+            {placeSelected.bestfive === 'yes' ? (
+              <img src={YesIcon} alt='yes icon' />
+            ) : (
+              <img src={NotIcon} alt='no icon' />
+            )}
           </div>
           <div className='border-line'></div>
           <div className='opening-hours'>

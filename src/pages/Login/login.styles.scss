@@ -3,7 +3,7 @@
   max-width: 400px;
   padding: 20px;
   background: white;
-  border-radius: 4px;
+  border-radius: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -51,6 +51,7 @@
         cursor: pointer;
         outline: none;
         padding: 12px;
+        border-radius: 5px;
         transition: transform 100ms ease-in;
 
         &:hover {

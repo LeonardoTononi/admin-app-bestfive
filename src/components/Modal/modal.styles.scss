@@ -1,0 +1,56 @@
+.modal {
+  position: fixed;
+  background: white;
+  padding: 20px;
+  z-index: 999;
+  border-radius: 20px;
+  box-shadow: 5px 6px 14px 0 #a9a9a9;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  text-align: center;
+  color: #585858;
+
+  h2 {
+    font-weight: 400;
+  }
+
+  button {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 10px;
+    opacity: 0.8;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 10em;
+    outline: none;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .yes-btn {
+    background: #f41111;
+  }
+
+  .ok-btn {
+    background-color: green;
+  }
+
+  .no-btn {
+    background: transparent;
+    border: 1px solid #9c9c9c;
+    color: #585858;
+    transition: background 100ms ease-in;
+
+    &:hover {
+      background: #9c9c9c;
+      color: white;
+    }
+  }
+}
