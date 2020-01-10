@@ -79,7 +79,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
             website,
             phone,
             bestfive,
-            position: new firebase.firestore.GeoPoint(3.000001, 4.000005),
+            position: { lat, lng },
             description,
             openingHours: {
               mon: {
@@ -120,7 +120,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 toggle: false,
                 place: ''
               });
-            }, 3000);
+            }, 1000);
           })
           .catch(err => console.log('Error updating document: ', err))
       : firebase
@@ -140,7 +140,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
             imageLink_3: '',
             imageLink_4: '',
             imageLink_5: '',
-            position: new firebase.firestore.GeoPoint(3.000001, 4.000005),
+            position: { lat, lng },
             description,
             openingHours: {
               mon: {
@@ -380,6 +380,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 <label>Lat</label>
                 <input
                   ref={register({ required: true })}
+                  defaultValue={checkIfEdit(place.position.lat)}
                   name='lat'
                   type='number'
                   id='lat'
@@ -391,6 +392,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 <label>Lng</label>
                 <input
                   ref={register({ required: true })}
+                  defaultValue={checkIfEdit(place.position.lng)}
                   name='lng'
                   type='number'
                   id='lng'
