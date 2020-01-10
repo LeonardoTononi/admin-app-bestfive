@@ -270,7 +270,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='place-details-container'>
+        <div className='add-place-container'>
           <div className='place-card main-info'>
             <div className='category'>
               <div className='category-icon'>
@@ -289,7 +289,17 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 ))}
               </select>
             </div>
-            <div></div>
+            <div className='bestfive'>
+              <p className='bestfive-title'></p>
+              <select
+                multiple={false}
+                name='bestfive'
+                defaultValue={checkIfEdit(place.bestfive)}
+                ref={register({ required: true })}>
+                <option value='yes'>yes</option>
+                <option value='no'>no</option>
+              </select>
+            </div>
             <div className='name'>
               <p className='name-title'></p>
               <input
@@ -300,7 +310,6 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 defaultValue={checkIfEdit(place.name)}
               />
             </div>
-            <div className='border-line'></div>
             <div className='google-id'>
               <p className='googleID-title'></p>
               <input
@@ -368,44 +377,28 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
             </div>
             <div className='position'>
               <div className='lat'>
-                <p>
-                  Lt -{' '}
-                  <input
-                    ref={register({ required: true })}
-                    name='lat'
-                    type='number'
-                    id='lat'
-                    step='1.00'
-                    min='0.0000001'
-                  />
-                </p>
+                <label>Lat</label>
+                <input
+                  ref={register({ required: true })}
+                  name='lat'
+                  type='number'
+                  id='lat'
+                  step='1.00'
+                  min='0.0000001'
+                />
               </div>
               <div className='lng'>
-                <p>
-                  Lg -{' '}
-                  <input
-                    ref={register({ required: true })}
-                    name='lng'
-                    type='number'
-                    id='lng'
-                    step='1.00'
-                    min='0.0000001'
-                  />
-                </p>
+                <label>Lng</label>
+                <input
+                  ref={register({ required: true })}
+                  name='lng'
+                  type='number'
+                  id='lng'
+                  step='1.00'
+                  min='0.0000001'
+                />
               </div>
             </div>
-            <div className='bestfive'>
-              <p className='bestfive-title'></p>
-              <select
-                multiple={false}
-                name='bestfive'
-                defaultValue={checkIfEdit(place.bestfive)}
-                ref={register({ required: true })}>
-                <option value='yes'>yes</option>
-                <option value='no'>no</option>
-              </select>
-            </div>
-            <div className='border-line'></div>
             <div className='opening-hours'>
               {hours ? (
                 <div className='hours'>
@@ -669,15 +662,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
             </div>
           </div>
           <div className='place-card description'>
-            <div className='text'>
-              <textarea
-                ref={register({ required: true })}
-                defaultValue={checkIfEdit(place.description)}
-                name='description'
-                id='description'
-                cols='60'
-                rows='20'></textarea>
-            </div>
+            <textarea
+              ref={register({ required: true })}
+              defaultValue={checkIfEdit(place.description)}
+              placeholder='Write a description here...'
+              name='description'
+              id='description'
+              cols='60'
+              rows='20'></textarea>
           </div>
         </div>
         <div className='add-place-button'>

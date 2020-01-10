@@ -58,14 +58,14 @@ const Navbar = ({
             <p>Add Place</p>
           </Link>
         </li>
-        <li className='faq-nav'>
+        {/* <li className='faq-nav'>
           <Link to='/'>
             <div className='icon'>
               <img src={FaqIcon} alt='q & a icon' />
             </div>
             <p>FAQ</p>
           </Link>
-        </li>
+        </li> */}
         <li className='logout' onClick={() => firebase.auth().signOut()}>
           <div className='icon'></div>
           <img src={LogOut} alt='' />

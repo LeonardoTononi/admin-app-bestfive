@@ -37,39 +37,23 @@
     height: 400px;
     padding: 1.4em;
     box-sizing: border-box;
-
-    .edit {
-      grid-area: edit;
-      position: absolute;
-      right: 25px;
-      top: 3px;
-
-      p {
-        font-size: 1rem;
-        padding: 0.2rem 0.8rem;
-        border: 1px solid #833ab4;
-        border-radius: 13px;
-        cursor: pointer;
-        color: #833ab4;
-      }
-    }
   }
 
-  .border-line {
-    grid-area: border;
-    height: 2px;
-    background-color: #e8e8e8;
-    margin-bottom: 40px;
-  }
+  /* .border-line {
+  grid-area: border;
+  height: 2px;
+  background-color: #e8e8e8;
+  margin-bottom: 40px;
+} */
 
   .main-info {
-    grid-template-areas:
-      "category category category"
-      "name name googleID"
-      "border border border"
-      "web web phone";
-    align-items: center;
-    height: 400px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    place-content: space-around;
+
+    select {
+      width: 5rem;
+    }
 
     p {
       font-size: 1.3rem;
@@ -78,9 +62,7 @@
     }
 
     .category {
-      grid-area: category;
-      place-items: start;
-      padding: 1rem 0 2.5rem 5rem;
+      place-self: center;
 
       .category-icon {
         position: absolute;
@@ -88,7 +70,7 @@
         border-radius: 13px;
         width: 30px;
         height: 30px;
-        top: 1.7rem;
+        top: 2.5rem;
         -webkit-transition: 250ms ease-in-out;
         transition: 250ms ease-in-out;
         padding: 10px;
@@ -110,14 +92,30 @@
         content: "Category";
         font-size: 1rem;
         position: absolute;
-        bottom: 0.1rem;
+        bottom: 1rem;
         color: #a9a9a9;
       }
     }
 
+    .bestfive {
+      place-self: center;
+      margin-right: 4rem;
+
+      .bestfive-title:before {
+        content: "Bestfive";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+
+      img {
+        width: 22px;
+      }
+    }
+
     .name {
-      grid-area: name;
-      padding: 1rem 0 2.5rem 1.1rem;
+      place-self: center;
 
       p {
         font-size: 1.6rem;
@@ -127,13 +125,12 @@
         content: "Name";
         font-size: 1rem;
         position: absolute;
-        bottom: 0.2rem;
+        bottom: 1rem;
         color: #a9a9a9;
       }
     }
 
     .website {
-      grid-area: web;
       place-self: center;
 
       .website-title:before {
@@ -146,7 +143,6 @@
     }
 
     .phone {
-      grid-area: phone;
       place-self: center;
 
       .phone-title:before {
@@ -159,14 +155,13 @@
     }
 
     .google-id {
-      grid-area: googleID;
       place-self: center;
 
       .googleID-title:before {
         content: "GoogleID";
         font-size: 1rem;
         position: absolute;
-        bottom: 0.2rem;
+        bottom: 1rem;
         color: #a9a9a9;
       }
     }
@@ -223,17 +218,19 @@
     grid-gap: 20px;
   }
 
-   .add-image-container-edit {
+  .add-image-container-edit {
     display: grid;
     place-content: center;
     grid-gap: 20px;
     position: absolute;
     background: #ffffff00;
+    width: 300px;
     top: 50%;
     left: 50%;
-    margin-left: -115px;
+    margin-left: -150px;
     margin-top: -47px;
   }
+
 
   .edit-alert-text {
     position: absolute;
@@ -317,16 +314,16 @@
 
   .secondary-info {
     grid-template-areas:
-      "price position bestfive"
-      "border border border"
-      "hours hours hours";
+      "price position"
+      "hours hours";
     align-items: center;
     height: 400px;
 
     .price {
-      padding: 2em 0 1em 1em;
       grid-area: price;
       position: relative;
+      place-items: center;
+      padding-left: 20px;
 
       .opacity {
         opacity: 0.5;
@@ -336,11 +333,15 @@
         width: 20px;
       }
 
+      select {
+        width: 50px;
+      }
+
       p:before {
         content: "Price";
         font-size: 1rem;
         position: absolute;
-        bottom: 4rem;
+        bottom: 2.5rem;
         color: #a9a9a9;
       }
     }
@@ -348,37 +349,29 @@
     .position {
       grid-area: position;
       position: relative;
-      padding: 2em 0 1em 1em;
+      display: grid;
+      place-items: start;
+      grid-gap: 8px;
 
       p {
         font-size: 0.9rem;
       }
 
-      p:before {
+      .lat label {
+        padding-left: 18px;
+      }
+
+      .lat:before {
         content: "Position";
         font-size: 1rem;
         position: absolute;
-        bottom: 4.5rem;
+        bottom: 3.2rem;
         color: #a9a9a9;
+        left: 0;
       }
     }
 
-    .bestfive {
-      grid-area: bestfive;
-      place-self: center;
 
-      .bestfive-title:before {
-        content: "Bestfive";
-        font-size: 1rem;
-        position: absolute;
-        top: 1rem;
-        color: #a9a9a9;
-      }
-
-      img {
-        width: 22px;
-      }
-    }
 
     .opening-hours {
       grid-area: hours;
@@ -390,11 +383,14 @@
         font-size: 1rem;
         position: absolute;
         top: -2rem;
+        left: 1rem;
         color: #a9a9a9;
       }
 
       .hours {
         display: grid;
+        grid-gap: 10px;
+        place-items: start;
 
         h5 {
           font-size: 1rem;
@@ -402,40 +398,62 @@
         }
 
         .row-hours {
-          display: inline-flex;
-          padding: 0.3rem;
+          display: flex;
+
+          label {
+            display: inline-block;
+            padding: 0;
+            width: 120px;
+          }
+        }
+
+        input {
+          padding: 5px;
         }
       }
     }
   }
+}
 
-  .description {
-    grid-template-areas: "text edit";
-    grid-template-columns: 1fr;
+.description-details {
+  padding: 0 !important;
 
-    .default-description {
-      font-size: 1.4rem;
-      place-self: center;
+  .default-description {
+    font-size: 1.4rem;
+    place-self: center;
+  }
+
+  textarea {
+    border: none;
+    background: #833ab426;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #484848;
+    outline: none;
+    border-radius: 40px;
+    padding: 2rem;
+
+    &::placeholder {
+      color: #909090;
     }
+  }
 
-    .text {
-      grid-area: text;
-      place-self: center;
+  p {
+    position: relative;
+    margin: 6rem;
+    text-align: center;
 
-      p {
-        position: relative;
-        margin: 6rem;
-
-        &::before {
-          content: "\201C";
-          position: absolute;
-          font-size: 10em;
-          color: #833ab4;
-          top: -0.4em;
-          left: -0.2em;
-          opacity: 0.2;
-        }
-      }
+    &::before {
+      content: "\201C";
+      position: absolute;
+      font-size: 10em;
+      color: #833ab4;
+      top: -0.4em;
+      left: -0.2em;
+      opacity: 0.2;
     }
   }
 }

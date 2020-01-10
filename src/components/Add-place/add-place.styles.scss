@@ -14,43 +14,38 @@ h5 {
   font-size: 1.4rem;
 }
 
-.space-bottom {
-  padding-bottom: 15px;
-}
-
-.row {
-  padding: 15px;
-  display: grid;
-  width: 400px;
+form {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-bottom: 5em;
 
   label {
     padding: 15px;
   }
 
   input {
-    margin: 0 15px;
     background: whitesmoke;
-    padding: 12px;
+    padding: 8px;
     border: none;
     box-shadow: inset 1px 1px 7px 0px #dcdcdc63;
     outline: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #484848;
   }
 
   input[type="time"] {
     font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0 5px;
   }
 
   select {
     display: block;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 400;
     color: #484848;
     line-height: 1.3;
-    padding: 12px;
-    margin: 0 15px;
+    padding: 8px;
     border: none;
     outline: none;
     border-radius: 0;
@@ -76,17 +71,6 @@ h5 {
   select option {
     font-weight: normal;
   }
-}
-
-.show-tag {
-  padding: 5px;
-  cursor: pointer;
-}
-
-form {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding-bottom: 5em;
 
   .submit {
     width: 10em;
@@ -141,5 +125,466 @@ form {
   .reminder-img {
     text-align: center;
     font-size: 1.3rem;
+  }
+}
+
+// COMPONENT TITLE
+
+.component-title {
+  padding: 4em 8em;
+  max-width: 1150px;
+  margin: 0 auto;
+
+  h1 {
+    padding: 0;
+    color: #a0a0a0;
+  }
+}
+
+// PLACE DETAILS
+
+.add-place-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 600px));
+  grid-gap: 100px;
+  place-content: center;
+  padding: 0 0 4em 0;
+  max-width: 1800px;
+  margin: 0 auto;
+  justify-items: center;
+
+  p {
+    margin: 0;
+  }
+
+  .place-card {
+    display: grid;
+    position: relative;
+    background: white;
+    border-radius: 40px;
+    box-shadow: 0px 4px 6px 0px #eaeaea;
+    width: 500px;
+    height: 400px;
+    padding: 1.4em;
+    box-sizing: border-box;
+  }
+
+  /* .border-line {
+  grid-area: border;
+  height: 2px;
+  background-color: #e8e8e8;
+  margin-bottom: 40px;
+} */
+
+  .main-info {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    place-content: space-around;
+
+    select {
+      width: 5rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: #585858;
+      position: relative;
+    }
+
+    .category {
+      place-self: center;
+
+      .category-icon {
+        position: absolute;
+        background: #f5f5f5;
+        border-radius: 13px;
+        width: 30px;
+        height: 30px;
+        top: 2.5rem;
+        -webkit-transition: 250ms ease-in-out;
+        transition: 250ms ease-in-out;
+        padding: 10px;
+        box-shadow: 3px 2px 10px 0 #d4d4d4;
+        -webkit-box-shadow: 3px 2px 10px 0 #d4d4d4;
+        position: absolute;
+        left: 2rem;
+
+        img {
+          width: 30px;
+        }
+      }
+
+      p {
+        font-size: 1.6rem;
+      }
+
+      .category-title:before {
+        content: "Category";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+    }
+
+    .bestfive {
+      place-self: center;
+      margin-right: 4rem;
+
+      .bestfive-title:before {
+        content: "Bestfive";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+
+      img {
+        width: 22px;
+      }
+    }
+
+    .name {
+      place-self: center;
+
+      p {
+        font-size: 1.6rem;
+      }
+
+      .name-title:before {
+        content: "Name";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+    }
+
+    .website {
+      place-self: center;
+
+      .website-title:before {
+        content: "Website";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+    }
+
+    .phone {
+      place-self: center;
+
+      .phone-title:before {
+        content: "Phone";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+    }
+
+    .google-id {
+      place-self: center;
+
+      .googleID-title:before {
+        content: "GoogleID";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 1rem;
+        color: #a9a9a9;
+      }
+    }
+  }
+
+  .place-images {
+    padding: 0;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 40px;
+    }
+
+    .carousel-container {
+      width: 500px;
+      height: 400px;
+
+      .image-container {
+        flex: 0 0 100%;
+        width: 500px;
+        height: 400px;
+      }
+
+      .carousel-buttons {
+        text-align: center;
+        box-sizing: border-box;
+
+        button {
+          border: none;
+          background: transparent;
+          outline: none;
+          padding: 10px;
+
+          &:hover,
+          &:active {
+            background: #e4e4e4;
+            border-radius: 10px;
+            cursor: pointer;
+          }
+
+          img {
+            width: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .add-image-container {
+    display: grid;
+    place-content: center;
+    grid-gap: 20px;
+  }
+
+  .add-image-container-edit {
+    display: grid;
+    place-content: center;
+    grid-gap: 20px;
+    position: absolute;
+    background: #ffffff00;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -47px;
+  }
+
+
+  .edit-alert-text {
+    position: absolute;
+    top: -50px;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+  }
+
+  .file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 1.5rem;
+
+    input {
+      min-width: 14rem;
+      margin: 0;
+      filter: alpha(opacity=0);
+      opacity: 0;
+    }
+
+    .file-custom {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 5;
+      height: 1.5rem;
+      padding: 0.5rem 1rem;
+      line-height: 1.5;
+      color: #585858;
+      background-color: #fff;
+      border: 0.075rem solid #ddd;
+      border-radius: 0.25rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &:before {
+        position: absolute;
+        top: -0.075rem;
+        right: -0.075rem;
+        bottom: -0.075rem;
+        z-index: 6;
+        display: block;
+        content: "📁";
+        height: 1.5rem;
+        padding: 0.5rem 1rem;
+        line-height: 1.5;
+        color: #585858;
+        background-color: #f3f3f3;
+        border: 0.075rem solid #ddd;
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
+
+      &:after {
+        content: "Select 5 images";
+      }
+    }
+  }
+
+  .add-image-btn {
+    width: 80px;
+    margin: 10px auto;
+    border: 1px solid #c7c7c7;
+    font-size: 1rem;
+    color: #585858;
+    padding: 5px;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 100ms ease-in-out;
+
+    &:hover {
+      background: #585858;
+      color: white;
+    }
+  }
+
+  .secondary-info {
+    grid-template-areas:
+      "price position"
+      "hours hours";
+    align-items: center;
+    height: 500px;
+
+    .price {
+      grid-area: price;
+      position: relative;
+      place-self: center;
+
+      .opacity {
+        opacity: 0.5;
+      }
+
+      img {
+        width: 20px;
+      }
+
+      select {
+        width: 50px;
+      }
+
+      p:before {
+        content: "Price";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 3.8rem;
+        color: #a9a9a9;
+      }
+    }
+
+    .position {
+      grid-area: position;
+      position: relative;
+      display: grid;
+      place-items: center;
+      grid-gap: 8px;
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .lat label {
+        padding-left: 18px;
+      }
+
+      .lat:before {
+        content: "Position";
+        font-size: 1rem;
+        position: absolute;
+        bottom: 5rem;
+        color: #a9a9a9;
+        left: 4.5rem;
+      }
+    }
+
+
+
+    .opening-hours {
+      grid-area: hours;
+      position: relative;
+      padding-left: 1rem;
+
+      &:before {
+        content: "Opening Hours";
+        font-size: 1rem;
+        position: absolute;
+        top: -2rem;
+        left: 1rem;
+        color: #a9a9a9;
+      }
+
+      .hours {
+        display: grid;
+        grid-gap: 10px;
+        place-items: start;
+
+        h5 {
+          font-size: 1rem;
+          width: 60px;
+        }
+
+        .row-hours {
+          display: flex;
+
+          label {
+            display: inline-block;
+            padding: 0;
+            width: 120px;
+          }
+        }
+
+        input {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+.description {
+  height: 500px !important;
+  padding: 0 !important;
+
+  .default-description {
+    font-size: 1.4rem;
+    place-self: center;
+  }
+
+  textarea {
+    border: none;
+    background: #833ab426;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #765482;
+    outline: none;
+    border-radius: 40px;
+    padding: 2rem;
+    line-height: 1.5em;
+
+
+    &::placeholder {
+      color: #909090;
+    }
+  }
+
+  p {
+    position: relative;
+    margin: 6rem;
+
+    &::before {
+      content: "\201C";
+      position: absolute;
+      font-size: 10em;
+      color: #833ab4;
+      top: -0.4em;
+      left: -0.2em;
+      opacity: 0.2;
+    }
   }
 }

@@ -164,7 +164,14 @@ class PlaceDetails extends Component {
               <p>{checkData(placeSelected.category)}</p>
             </div>
           </div>
-          <div></div>
+          <div className='bestfive'>
+            <p className='bestfive-title'></p>
+            {placeSelected.bestfive === 'yes' ? (
+              <img src={YesIcon} alt='yes icon' />
+            ) : (
+              <img src={NotIcon} alt='no icon' />
+            )}
+          </div>
           <div className='name'>
             <p className='name-title'></p>
             <p>{checkData(placeSelected.name)}</p>
@@ -173,8 +180,6 @@ class PlaceDetails extends Component {
             <p className='googleID-title'></p>
             <p>{checkData(placeSelected.googleID)}</p>
           </div>
-          <div className='border-line'></div>
-
           <div className='website'>
             <p className='website-title'></p>
             <p>{checkData(placeSelected.website)}</p>
@@ -202,15 +207,6 @@ class PlaceDetails extends Component {
               <p>Lg - {checkData(lng)}</p>
             </div>
           </div>
-          <div className='bestfive'>
-            <p className='bestfive-title'></p>
-            {placeSelected.bestfive === 'yes' ? (
-              <img src={YesIcon} alt='yes icon' />
-            ) : (
-              <img src={NotIcon} alt='no icon' />
-            )}
-          </div>
-          <div className='border-line'></div>
           <div className='opening-hours'>
             {week ? (
               <div className='hours'>
@@ -291,7 +287,7 @@ class PlaceDetails extends Component {
             )}
           </div>
         </div>
-        <div className='place-card description'>
+        <div className='place-card description-details'>
           <div className='text'>
             {placeSelected.description ? (
               <p>{placeSelected.description}</p>
