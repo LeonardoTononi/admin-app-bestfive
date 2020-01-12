@@ -5,7 +5,7 @@ import './dashboard.styles.scss';
 
 import PlaceDetails from '../../components/Place-details/place-details.component';
 import Navbar from '../../components/Navbar/navbar.component';
-import PlaceList from '../../components/Places-list/places-list.component';
+import PlacesTable from '../../components/Places-table/places-table.component';
 import AddPlace from '../../components/Add-place/add-place.component';
 
 import SelectList from '../../assets/select-list.svg';
@@ -81,8 +81,9 @@ const Dashboard = ({ match }) => {
           edit and delete a specific place from the database.
         </p>
       </div>
-      <PlaceList
+      <PlacesTable
         listContent={listContent}
+        setListContent={setListContent}
         setPlaceSelected={setPlaceSelected}
         toggleEditPlace={toggleEditPlace}
         setToggleEditPlace={setToggleEditPlace}

@@ -229,6 +229,11 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
       ? toggleEditPlace.place.openingHours
       : '';
 
+  const postion =
+    toggleEditPlace && toggleEditPlace.place
+      ? toggleEditPlace.place.position
+      : '';
+
   const checkIfEdit = value => {
     if (value === '') {
       return '';
@@ -380,7 +385,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 <label>Lat</label>
                 <input
                   ref={register({ required: true })}
-                  defaultValue={checkIfEdit(place.position.lat)}
+                  defaultValue={checkIfEdit(postion.lat)}
                   name='lat'
                   type='number'
                   id='lat'
@@ -392,7 +397,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                 <label>Lng</label>
                 <input
                   ref={register({ required: true })}
-                  defaultValue={checkIfEdit(place.position.lng)}
+                  defaultValue={checkIfEdit(postion.lng)}
                   name='lng'
                   type='number'
                   id='lng'
@@ -408,7 +413,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Monday</label>
                     <input
                       name='mondayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.mon.open)}
                       type='time'
                       id='mondayOpen'
@@ -416,7 +421,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='mondayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.mon.close)}
                       type='time'
                       id='mondayClose'
@@ -427,7 +432,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Tuesday</label>
                     <input
                       name='tuesdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.tue.open)}
                       type='time'
                       id='tuesdayOpen'
@@ -435,7 +440,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='tuesdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.tue.close)}
                       type='time'
                       id='tuesdayClose'
@@ -446,7 +451,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Wednesday</label>
                     <input
                       name='wednesdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.wed.open)}
                       type='time'
                       id='wednesdayOpen'
@@ -454,7 +459,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='wednesdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.wed.close)}
                       type='time'
                       id='wednesdayClose'
@@ -465,7 +470,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Thursday</label>
                     <input
                       name='thursdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.thu.open)}
                       type='time'
                       id='thursdayOpen'
@@ -473,7 +478,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='thursdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.thu.close)}
                       type='time'
                       id='thursdayClose'
@@ -484,7 +489,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Friday</label>
                     <input
                       name='fridayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.fri.open)}
                       type='time'
                       id='fridayOpen'
@@ -492,7 +497,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='fridayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.fri.close)}
                       type='time'
                       id='fridayClose'
@@ -503,7 +508,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Saturday</label>
                     <input
                       name='saturdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.sat.open)}
                       type='time'
                       id='saturdayOpen'
@@ -511,7 +516,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='saturdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.sat.close)}
                       type='time'
                       id='saturdayClose'
@@ -522,7 +527,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Sunday</label>
                     <input
                       name='sundayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.sun.open)}
                       type='time'
                       id='sundayOpen'
@@ -530,7 +535,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                       max='23:59'></input>
                     <input
                       name='sundayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       defaultValue={checkIfEdit(hours.sun.close)}
                       type='time'
                       id='sundayClose'
@@ -544,14 +549,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Monday</label>
                     <input
                       name='mondayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='mondayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='mondayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='mondayClose'
                       min='00:00'
@@ -561,14 +566,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Tuesday</label>
                     <input
                       name='tuesdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='tuesdayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='tuesdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='tuesdayClose'
                       min='00:00'
@@ -578,14 +583,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Wednesday</label>
                     <input
                       name='wednesdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='wednesdayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='wednesdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='wednesdayClose'
                       min='00:00'
@@ -595,14 +600,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Thursday</label>
                     <input
                       name='thursdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='thursdayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='thursdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='thursdayClose'
                       min='00:00'
@@ -612,14 +617,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Friday</label>
                     <input
                       name='fridayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='fridayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='fridayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='fridayClose'
                       min='00:00'
@@ -629,14 +634,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Saturday</label>
                     <input
                       name='saturdayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='saturdayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='saturdayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='saturdayClose'
                       min='00:00'
@@ -646,14 +651,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
                     <label>Sunday</label>
                     <input
                       name='sundayOpen'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='sundayOpen'
                       min='00:00'
                       max='23:59'></input>
                     <input
                       name='sundayClose'
-                      ref={register({ required: true })}
+                      ref={register}
                       type='time'
                       id='sundayClose'
                       min='00:00'
