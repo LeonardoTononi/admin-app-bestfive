@@ -58,8 +58,8 @@ const PlacesTable = ({
           <tr>
             <th>Name</th>
             <th>GoogleID</th>
-            <th>Bestfive</th>
-            <th></th>
+            <th className='text-center'>Bestfive</th>
+            <th id='space-left'>Actions</th>
           </tr>
         </thead>
         <Places
