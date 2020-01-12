@@ -1,8 +1,13 @@
 .pagination-nav {
+  display: flex;
+  place-content: space-between;
+  padding: 20px 10px;
+
   ul {
     list-style-type: none;
     padding: 0 10px;
     display: inline-flex;
+    margin: 0;
 
     button {
       background: none;

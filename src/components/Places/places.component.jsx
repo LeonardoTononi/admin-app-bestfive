@@ -54,6 +54,19 @@ const Places = ({
           </td>
           <td className='row-actions'>
             <div
+              className='view-more'
+              onClick={() => {
+                setPlaceSelected(place);
+                scrollToTop();
+                setToggleEditPlace({
+                  toggle: false,
+                  place: place
+                });
+              }}>
+              <img src={ViewMore} alt='' />
+              <span>Details</span>
+            </div>
+            <div
               className='edit'
               onClick={() => {
                 setToggleEditPlace({
@@ -68,19 +81,6 @@ const Places = ({
             <div className='delete' onClick={() => deletePrompt(place)}>
               <img src={DeleteIcon} alt='' />
               <span>Delete</span>
-            </div>
-            <div
-              className='view-more'
-              onClick={() => {
-                setPlaceSelected(place);
-                scrollToTop();
-                setToggleEditPlace({
-                  toggle: false,
-                  place: place
-                });
-              }}>
-              <img src={ViewMore} alt='' />
-              <span>Details</span>
             </div>
           </td>
         </tr>

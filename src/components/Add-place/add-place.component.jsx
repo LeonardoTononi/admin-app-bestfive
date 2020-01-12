@@ -22,6 +22,14 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
   const [successMessageEdit, setSuccessMessageEdit] = useState(false);
   const [imageFiles, setImageFiles] = useState([]);
 
+  const [scrollIsVisible, setScrollIsVisible] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener('scroll', function(e) {
+      toggleVisibility();
+    });
+  });
+
   useEffect(() => {
     firebase
       .firestore()
@@ -184,6 +192,21 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
           .catch(err => {
             console.log(`ERROR: the error is: ${err} `);
           });
+  };
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setScrollIsVisible(true);
+    } else {
+      setScrollIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const fileUpload = e => {
@@ -680,7 +703,7 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
           </div>
         </div>
         <div className='add-place-button'>
-          <button className='submit' type='submit'>
+          <button className='submit' type='submit' onClick={scrollToTop}>
             {toggleEditPlace ? 'Edit' : ' Add Now'}
           </button>
         </div>

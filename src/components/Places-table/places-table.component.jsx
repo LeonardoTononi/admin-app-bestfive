@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import firebase from '../../firebase/firebase';
 
 import './places-table.styles.scss';
@@ -26,7 +27,22 @@ const PlacesTable = ({
   const indexOfFirstPlace = indexOfLastPlace - placesPerPage;
   const currentPlaces = listContent.slice(indexOfFirstPlace, indexOfLastPlace);
 
+  const [category, setCategory] = useState([]);
+
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('category')
+      .onSnapshot(snapshot => {
+        const cat = snapshot.docs.map(doc => ({
+          docID: doc.id,
+          ...doc.data()
+        }));
+        setCategory(cat);
+      });
+  }, []);
 
   const deletePrompt = place => {
     setPlaceToDelete(place);
@@ -49,9 +65,31 @@ const PlacesTable = ({
 
   return (
     <div className='table-container'>
-      <div className='search'>
-        <label>Search</label>
-        <input type='text' />
+      <div className='filters'>
+        <div className='search'>
+          <input type='text' placeholder='Search for place name' />
+        </div>
+        <div>
+          <select name='category-filter' id='category-filter'>
+            <option value='' disabled selected>
+              Category
+            </option>
+            {category.map(item => (
+              <option value={item.name} key={item.docID}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <select name='b5-filter' id='b5-filter' placeholder='Bestfive'>
+            <option value='' disabled selected>
+              Bestfive
+            </option>
+            <option value='yes'>Yes</option>
+            <option value='no'>No</option>
+          </select>
+        </div>
       </div>
       <table className='table-content'>
         <thead>
