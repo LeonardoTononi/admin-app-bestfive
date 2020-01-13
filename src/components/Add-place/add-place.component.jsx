@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase/firebase';
 import useForm from 'react-hook-form';
 
+import Button from '../Button/button.component';
 import ImagesCarouselUpload from '../Images-carousel-upload/images-carousel-upload.component';
 import {
   uploadOnStorageAndSetLinkDb_1,
@@ -23,6 +24,17 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
   const [imageFiles, setImageFiles] = useState([]);
 
   const [scrollIsVisible, setScrollIsVisible] = useState(false);
+
+  const [isBtnLoading, setIsBtnLoading] = useState(false);
+  const [loadingSpeed, setLoadingSpeed] = React.useState(1);
+
+  useEffect(() => {
+    if (isBtnLoading) {
+      setTimeout(() => {
+        setIsBtnLoading(false);
+      }, 1000 / loadingSpeed);
+    }
+  }, [isBtnLoading, loadingSpeed]);
 
   useEffect(() => {
     document.addEventListener('scroll', function(e) {
@@ -703,9 +715,12 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
           </div>
         </div>
         <div className='add-place-button'>
-          <button className='submit' type='submit' onClick={scrollToTop}>
+          <Button
+            type='submit'
+            isLoading={isBtnLoading}
+            onClick={() => setIsBtnLoading(true)}>
             {toggleEditPlace ? 'Edit' : ' Add Now'}
-          </button>
+          </Button>
         </div>
       </form>
     </div>
