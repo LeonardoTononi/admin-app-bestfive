@@ -7,6 +7,7 @@ import './places-table.styles.scss';
 import Modal from '../Modal/modal.component';
 import Places from '../Places/places.component';
 import Pagination from '../Pagination/pagination.component';
+import Filters from '../Filters/filters.component';
 
 const PlacesTable = ({
   listContent,
@@ -22,10 +23,15 @@ const PlacesTable = ({
   //Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [placesPerPage, setPlacesPerPage] = useState(5);
-  // Get current posts
+  // Get current places
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
+
   const indexOfLastPlace = currentPage * placesPerPage;
   const indexOfFirstPlace = indexOfLastPlace - placesPerPage;
-  const currentPlaces = listContent.slice(indexOfFirstPlace, indexOfLastPlace);
+  const currentPlaces = toggleFilter
+    ? filteredPlaces.slice(indexOfFirstPlace, indexOfLastPlace)
+    : listContent.slice(indexOfFirstPlace, indexOfLastPlace);
 
   const [category, setCategory] = useState([]);
 
@@ -65,32 +71,13 @@ const PlacesTable = ({
 
   return (
     <div className='table-container'>
-      <div className='filters'>
-        <div className='search'>
-          <input type='text' placeholder='Search for place name' />
-        </div>
-        <div>
-          <select name='category-filter' id='category-filter'>
-            <option value='' disabled selected>
-              Category
-            </option>
-            {category.map(item => (
-              <option value={item.name} key={item.docID}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <select name='b5-filter' id='b5-filter' placeholder='Bestfive'>
-            <option value='' disabled selected>
-              Bestfive
-            </option>
-            <option value='yes'>Yes</option>
-            <option value='no'>No</option>
-          </select>
-        </div>
-      </div>
+      <Filters
+        category={category}
+        currentPlaces={currentPlaces}
+        setToggleFilter={setToggleFilter}
+        toggleFilter={toggleFilter}
+        setFilteredPlaces={setFilteredPlaces}
+      />
       <table className='table-content'>
         <thead>
           <tr>

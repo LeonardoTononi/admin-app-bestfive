@@ -1,0 +1,117 @@
+.filters {
+  display: inline-flex;
+  place-content: flex-end;
+  padding-bottom: 25px;
+
+  & > div {
+    padding: 0 5px;
+  }
+
+  .filter-refresh {
+    position: relative;
+    display: inline-block;
+
+    &:hover span {
+      visibility: visible;
+    }
+
+    span {
+      left: 50%;
+      visibility: hidden;
+      font-size: 0.8rem;
+      letter-spacing: 0.1rem;
+      width: 80px;
+      background-color: #4b4b4b;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 40px;
+      z-index: 1;
+      margin-left: -40px;
+      box-shadow: 5px 2px 10px 0 #dfdfdf;
+    }
+
+    button {
+      border: 1px solid lightgray;
+      background-color: none;
+      cursor: pointer;
+      border-radius: 10px;
+      width: 30px;
+      height: 30px;
+      padding: 1px;
+      outline: none;
+
+      &:hover {
+        background-color: whitesmoke;
+      }
+
+      img {
+        width: 25px;
+      }
+    }
+  }
+
+  .search {
+    label {
+      padding-right: 0.4em;
+    }
+
+    input {
+      outline: none;
+      color: #484848;
+      font-size: 0.8rem;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      transition: background-color 50ms ease-in-out;
+      height: 30px;
+      box-sizing: border-box;
+      width: 150px;
+
+      &:focus {
+        background-color: whitesmoke;
+        color: #484848;
+      }
+    }
+  }
+
+  select {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #484848;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    width: 50px;
+    height: 30px;
+    outline: none;
+    border-radius: 4px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+  }
+
+  #category-filter,
+  #b5-filter {
+    width: 100px;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  select:focus {
+    outline: none;
+  }
+
+  select option {
+    font-weight: normal;
+  }
+}
