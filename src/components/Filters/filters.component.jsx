@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import './filters.styles.scss';
 
 import RefreshIcon from '../../assets/icons/refresh.png';
+import SettingsIcon from '../../assets/icons/settings.png';
 
 class Filters extends Component {
   state = {
     filter: '',
-    filteredPlaces: false
+    filteredPlaces: false,
+    filtersToggleUI: false
   };
 
   setFilteredPlaces = () =>
@@ -62,44 +64,57 @@ class Filters extends Component {
 
     return (
       <div className='filters'>
-        <div className='filter-refresh' onClick={this.refreshFilters}>
-          <button>
-            <img src={RefreshIcon} alt='' />
-            <span>Refresh</span>
+        {this.state.filtersToggleUI ? (
+          <div className='filters'>
+            <div className='filter-refresh' onClick={this.refreshFilters}>
+              <button>
+                <img src={RefreshIcon} alt='' />
+                <span>Refresh</span>
+              </button>
+            </div>
+            <div className='filter-toggle'></div>
+            <div className='search'>
+              <input type='text' placeholder='Search for place name' />
+            </div>
+            <div>
+              <select
+                name='category-filter'
+                id='category-filter'
+                value={this.state.filter}
+                onChange={this.handleFiltering}>
+                <option value='' disabled selected>
+                  Category
+                </option>
+                {category.map(item => (
+                  <option value={item.name} key={item.docID}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <select
+                name='b5-filter'
+                id='b5-filter'
+                placeholder='Bestfive'
+                onChange={this.handleFiltering}>
+                <option value='' disabled selected>
+                  Bestfive
+                </option>
+                <option value='yes'>Yes</option>
+                <option value='no'>No</option>
+              </select>
+            </div>
+          </div>
+        ) : null}
+        <div className='settings'>
+          <button
+            onClick={() =>
+              this.setState({ filtersToggleUI: !this.state.filtersToggleUI })
+            }>
+            <img src={SettingsIcon} alt='' />
+            <span>Filters Toggle</span>
           </button>
-        </div>
-        <div className='filter-toggle'></div>
-        <div className='search'>
-          <input type='text' placeholder='Search for place name' />
-        </div>
-        <div>
-          <select
-            name='category-filter'
-            id='category-filter'
-            value={this.state.filter}
-            onChange={this.handleFiltering}>
-            <option value='' disabled selected>
-              Category
-            </option>
-            {category.map(item => (
-              <option value={item.name} key={item.docID}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <select
-            name='b5-filter'
-            id='b5-filter'
-            placeholder='Bestfive'
-            onChange={this.handleFiltering}>
-            <option value='' disabled selected>
-              Bestfive
-            </option>
-            <option value='yes'>Yes</option>
-            <option value='no'>No</option>
-          </select>
         </div>
       </div>
     );
