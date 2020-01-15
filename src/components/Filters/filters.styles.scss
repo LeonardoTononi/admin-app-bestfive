@@ -20,12 +20,11 @@
       left: 50%;
       visibility: hidden;
       font-size: 0.8rem;
-      letter-spacing: 0.1rem;
       width: 80px;
       background-color: #4b4b4b;
       color: #fff;
       text-align: center;
-      padding: 5px 0;
+      padding: 5px;
       border-radius: 6px;
       position: absolute;
       bottom: 40px;
@@ -49,7 +48,7 @@
       }
 
       img {
-        width: 25px;
+        width: 20px;
       }
     }
   }

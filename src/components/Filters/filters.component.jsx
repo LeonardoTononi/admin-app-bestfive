@@ -9,7 +9,26 @@ class Filters extends Component {
   state = {
     filter: '',
     filteredPlaces: false,
-    filtersToggleUI: false
+    filtersToggleUI: false,
+    searchInput: ''
+  };
+
+  handleSearchInput = e => {
+    this.refreshFilters();
+    const value = e.target.value;
+    this.setState({ searchInput: e.target.value }, () => {
+      console.log(value);
+      this.props.setToggleFilter(true);
+      const filterForName = this.props.currentPlaces.filter(place =>
+        place.name.toLowerCase().includes(this.state.searchInput.toLowerCase())
+      );
+      this.setState(
+        {
+          filteredPlaces: filterForName
+        },
+        () => this.props.setFilteredPlaces(this.state.filteredPlaces)
+      );
+    });
   };
 
   setFilteredPlaces = () =>
@@ -40,6 +59,7 @@ class Filters extends Component {
   refreshFilters = () => {
     this.setState({ filter: '', filteredPlaces: false }, () => {
       this.props.setToggleFilter(false);
+      this.props.paginate(1);
     });
   };
 
@@ -52,8 +72,10 @@ class Filters extends Component {
         this.props.setToggleFilter(!this.props.toggleFilter);
         if (targetName === 'category-filter') {
           this.filterPlacesForCategory(this.props.currentPlaces);
+          this.props.paginate(1);
         } else if (targetName === 'b5-filter') {
           this.filterPlacesForBestfive(this.props.currentPlaces);
+          this.props.paginate(1);
         } else return;
       });
     });
@@ -74,7 +96,12 @@ class Filters extends Component {
             </div>
             <div className='filter-toggle'></div>
             <div className='search'>
-              <input type='text' placeholder='Search for place name' />
+              <input
+                type='text'
+                value={this.state.searchInput}
+                onChange={this.handleSearchInput}
+                placeholder='Search for place name'
+              />
             </div>
             <div>
               <select

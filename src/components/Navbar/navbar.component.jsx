@@ -22,7 +22,7 @@ const Navbar = ({
         <li className='logo'>
           <Link to='/dashboard'>
             <div className='icon'></div>
-            <img src={FiveHand} alt='hand five' />
+            <h1>bestfive</h1>
           </Link>
         </li>
         <li className='dashboard-nav'>

@@ -77,6 +77,8 @@ const PlacesTable = ({
         setToggleFilter={setToggleFilter}
         toggleFilter={toggleFilter}
         setFilteredPlaces={setFilteredPlaces}
+        filteredPlaces={filteredPlaces}
+        paginate={paginate}
       />
       <table className='table-content'>
         <thead>

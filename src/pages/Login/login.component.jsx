@@ -32,7 +32,7 @@ const Login = ({ history }) => {
   return (
     <div className='login-container'>
       <h1>
-        <img src={FiveHand} alt='hand five' className='b5-hand' /> Bestfive
+        <img src={FiveHand} alt='hand five' className='b5-hand' /> bestfive
       </h1>
       <form onSubmit={handleLogin}>
         <div className='row'>
