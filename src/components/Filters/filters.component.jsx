@@ -15,24 +15,15 @@ class Filters extends Component {
 
   handleSearchInput = e => {
     this.refreshFilters();
-    const value = e.target.value;
-    this.setState({ searchInput: e.target.value }, () => {
-      console.log(value);
+    const search = e.target.value;
+    const filterForName = this.props.currentPlaces.filter(place =>
+      place.name.toLowerCase().includes(search.toLowerCase())
+    );
+    this.setState({ filteredPlaces: filterForName }, () => {
+      this.props.setFilteredPlaces(filterForName);
       this.props.setToggleFilter(true);
-      const filterForName = this.props.currentPlaces.filter(place =>
-        place.name.toLowerCase().includes(this.state.searchInput.toLowerCase())
-      );
-      this.setState(
-        {
-          filteredPlaces: filterForName
-        },
-        () => this.props.setFilteredPlaces(this.state.filteredPlaces)
-      );
     });
   };
-
-  setFilteredPlaces = () =>
-    this.props.setFilteredPlaces(this.state.filteredPlaces);
 
   filterPlacesForCategory = currentPlaces => {
     this.setState(
@@ -41,7 +32,7 @@ class Filters extends Component {
           place => place.category === this.state.filter
         )
       },
-      () => this.setFilteredPlaces()
+      () => this.props.setFilteredPlaces(this.state.filteredPlaces)
     );
   };
 
@@ -52,7 +43,7 @@ class Filters extends Component {
           place => place.bestfive === this.state.filter
         )
       },
-      () => this.setFilteredPlaces()
+      () => this.props.setFilteredPlaces(this.state.filteredPlaces)
     );
   };
 
@@ -98,7 +89,6 @@ class Filters extends Component {
             <div className='search'>
               <input
                 type='text'
-                value={this.state.searchInput}
                 onChange={this.handleSearchInput}
                 placeholder='Search for place name'
               />

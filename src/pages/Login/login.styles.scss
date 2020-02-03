@@ -13,7 +13,8 @@
 
   h1 {
     padding: 0;
-    color: #833ab4;
+    color: #484848;
+    text-align: center;
   }
 
   img {
@@ -30,10 +31,10 @@
 
       input {
         margin: 0 15px;
-        background: #f8edff;
+        background: whitesmoke;
         padding: 12px;
         border: none;
-        box-shadow: inset 1px 1px 7px 0px #dcdcdc63;
+        box-shadow: inset 1px 1px 7px 0px whitesmoke;
         outline: none;
         font-size: 1rem;
         color: #484848;
@@ -43,7 +44,7 @@
         max-height: 42px;
         width: 370px;
         margin: 3em auto 2em auto;
-        background: #833ab4;
+        background: #484848;
         color: white;
         border: none;
         font-size: 1rem;
@@ -56,7 +57,7 @@
 
         &:hover {
           transform: scale(1.05);
-          background: #833ab4;
+          background: #484848;
         }
       }
     }

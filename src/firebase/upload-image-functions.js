@@ -23,7 +23,7 @@ export const uploadOnStorageAndSetLinkDb_1 = (
               .update({
                 imageLink_1: url
               })
-              .then(() => console.log('Image link ref updated!'))
+              .then(() => console.log('Upload / Edit success'))
               .catch(error =>
                 console.error('Error updating image link ref: ', error)
               );
@@ -57,7 +57,7 @@ export const uploadOnStorageAndSetLinkDb_2 = (
               .update({
                 imageLink_2: url
               })
-              .then(() => console.log('Image link ref updated!'))
+              .then(() => console.log('Upload / Edit success'))
               .catch(error =>
                 console.error('Error updating image link ref: ', error)
               );
@@ -91,7 +91,7 @@ export const uploadOnStorageAndSetLinkDb_3 = (
               .update({
                 imageLink_3: url
               })
-              .then(() => console.log('Image link ref updated!'))
+              .then(() => console.log('Upload / Edit success'))
               .catch(error =>
                 console.error('Error updating image link ref: ', error)
               );
@@ -125,7 +125,7 @@ export const uploadOnStorageAndSetLinkDb_4 = (
               .update({
                 imageLink_4: url
               })
-              .then(() => console.log('Image link ref updated!'))
+              .then(() => console.log('Upload / Edit success'))
               .catch(error =>
                 console.error('Error updating image link ref: ', error)
               );
@@ -140,7 +140,9 @@ export const uploadOnStorageAndSetLinkDb_4 = (
 export const uploadOnStorageAndSetLinkDb_5 = (
   selectedCategory,
   placeSelected,
-  imageFiles
+  imageFiles,
+  successMessageUploadImage,
+  setSuccessMessageUploadImage
 ) => {
   const storageRef = storage.ref(
     `places/${selectedCategory}/${placeSelected.name}/${imageFiles[4].name}`
@@ -159,7 +161,12 @@ export const uploadOnStorageAndSetLinkDb_5 = (
               .update({
                 imageLink_5: url
               })
-              .then(() => console.log('Image link ref updated!'))
+              .then(() => {
+                setSuccessMessageUploadImage(true);
+                setTimeout(() => {
+                  setSuccessMessageUploadImage(false);
+                }, 2000);
+              })
               .catch(error =>
                 console.error('Error updating image link ref: ', error)
               );

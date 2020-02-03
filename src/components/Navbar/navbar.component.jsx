@@ -22,7 +22,7 @@ const Navbar = ({
         <li className='logo'>
           <Link to='/dashboard'>
             <div className='icon'></div>
-            <h1>bestfive</h1>
+            <h1>toureo</h1>
           </Link>
         </li>
         <li className='dashboard-nav'>
@@ -37,7 +37,7 @@ const Navbar = ({
               setPlaceSelected(null);
             }}>
             <div className='icon'>
-              <img src={DashboardIcon} alt='dashboard icon' />
+              {/*    <img src={DashboardIcon} alt='dashboard icon' /> */}
             </div>
             <p>Dashboard</p>
           </Link>
@@ -53,7 +53,7 @@ const Navbar = ({
               });
             }}>
             <div className='icon'>
-              <img src={AddPlaceIcon} alt='add place icon' />
+              {/*   <img src={AddPlaceIcon} alt='add place icon' /> */}
             </div>
             <p>Add Place</p>
           </Link>
@@ -68,7 +68,7 @@ const Navbar = ({
         </li> */}
         <li className='logout' onClick={() => firebase.auth().signOut()}>
           <div className='icon'></div>
-          <img src={LogOut} alt='' />
+          <p>Logout</p>
         </li>
       </ul>
     </div>

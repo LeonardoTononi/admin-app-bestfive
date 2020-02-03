@@ -21,6 +21,9 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
   const [category, setCategory] = useState([]);
   const [successMessage, setSuccessMessage] = useState(false);
   const [successMessageEdit, setSuccessMessageEdit] = useState(false);
+  const [successMessageUploadImage, setSuccessMessageUploadImage] = useState(
+    false
+  );
   const [imageFiles, setImageFiles] = useState([]);
 
   const [scrollIsVisible, setScrollIsVisible] = useState(false);
@@ -226,27 +229,37 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
     uploadOnStorageAndSetLinkDb_1(
       toggleEditPlace.category,
       toggleEditPlace,
-      imageFiles
+      imageFiles,
+      successMessageUploadImage,
+      setSuccessMessageUploadImage
     );
     uploadOnStorageAndSetLinkDb_2(
       toggleEditPlace.category,
       toggleEditPlace,
-      imageFiles
+      imageFiles,
+      successMessageUploadImage,
+      setSuccessMessageUploadImage
     );
     uploadOnStorageAndSetLinkDb_3(
       toggleEditPlace.category,
       toggleEditPlace,
-      imageFiles
+      imageFiles,
+      successMessageUploadImage,
+      setSuccessMessageUploadImage
     );
     uploadOnStorageAndSetLinkDb_4(
       toggleEditPlace.category,
       toggleEditPlace,
-      imageFiles
+      imageFiles,
+      successMessageUploadImage,
+      setSuccessMessageUploadImage
     );
     uploadOnStorageAndSetLinkDb_5(
       toggleEditPlace.category,
       toggleEditPlace,
-      imageFiles
+      imageFiles,
+      successMessageUploadImage,
+      setSuccessMessageUploadImage
     );
   };
 
@@ -290,6 +303,11 @@ const AddPlace = ({ toggleEditPlace, setToggleEditPlace }) => {
             <div className='success-message'>
               <img src={SuccessIcon} alt='success icon' />
               <p> Place edited successfully!</p>
+            </div>
+          ) : successMessageUploadImage ? (
+            <div className='success-message'>
+              <img src={SuccessIcon} alt='success icon' />
+              <p>Added images successfully!</p>
             </div>
           ) : null}
         </div>

@@ -1,6 +1,7 @@
 {
   "name": "admin-app-bestfive",
   "version": "0.1.0",
+  "homepage": "https://admin.bestfivebcn.com/",
   "private": true,
   "dependencies": {
     "embla-carousel": "^2.6.6",
